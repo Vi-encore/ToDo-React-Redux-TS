@@ -8,7 +8,7 @@ TO INSTAL:
 
 SCRIPTS:
 
-- npm run dev --- run dev vers
+- npm run dev --- run project in development mode
 - npm run build --- build your project
 - npm run preview --- how your project will look like in build vers
 - npm run format --- to format your files
