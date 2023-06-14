@@ -1,34 +1,6 @@
-:root {
-  --white: #ffffff;
-  --black: #000000;
-  --black-transp: #0000008a;
-
-  --side-popup-text: #616161;
-  --disabled-btn-bg-color: #d7d7d7;
-  --active-close-btn-color: #fb2828;
-
-  --secondary-btn-border-color: #cfcfcf;
-  --secondary-btn-hover-bg: #dfdfdf;
-  --secondary-btn-active-bg: #bebebe;
-
-  --main-btn-bg-color: #f6b91a;
-  --main-btn-hover-bg: #f6ab1a; //focused input
-  --main-btn-active-bg: #f6911a;
-
-  --error-text-color: #ff4141;
-  --error-bg-color: #ffcccc;
-
-  --card-bg-color: #e7e7e7;
-  --card-btn-section-color: #d9d9d9;
-
-  --btn-border: 0.5px solid var(var(--btn-border-color));
-  --border-radius-base: 5px;
-  --border-radius-btn-card: 15px;
-}
-
-* {
-  font-family: 'Inter', sans-serif;
-}
+@import 'utils/variables';
+@import 'utils/general';
+@import 'utils/mixins';
 
 // a {
 //   font-weight: 500;
