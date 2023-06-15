@@ -4,8 +4,37 @@
   @include flex-center;
 
   &__box {
-    padding: 30px;
+    padding: 30px 70px;
+    width: 30%;
     @include box-shadow;
     border-radius: $r-md;
+  }
+
+  &__header {
+    @include modal-title;
+    margin: 0 0 30px 0;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__label {
+    color: $side-popup-text;
+    padding-bottom: 9px;
+    @include text;
+  }
+
+  &__input {
+    @include border(1px, $secondary-btn-border-color);
+    padding: 18px;
+    border-radius: $r-base;
+    @include text;
+  }
+
+  &__submit {
+    align-self: center;
+    margin-top: 30px;
   }
 }

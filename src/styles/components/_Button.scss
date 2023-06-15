@@ -1,0 +1,17 @@
+.btn {
+  width: 50%;
+  padding: 18px 0;
+  background-color: $main-btn-bg-color;
+  border: none;
+  border-radius: $r-lg;
+  @include btn-text;
+  @include transition;
+
+  &:hover {
+    background-color: $main-btn-hover-bg;
+  }
+
+  &:active {
+    background-color: $main-btn-active-bg;
+  }
+}

@@ -14,12 +14,14 @@ export default function LoginPage() {
             checkLogin(e.target[0].value)
           }}
         >
-          <label htmlFor='login'>Email</label>
+          <label className='loginPage__label' htmlFor='login'>
+            Email
+          </label>
           <input name='login' type='login' className='loginPage__input'></input>
           <input
             type='submit'
             value='Submit'
-            className='loginPage__submit'
+            className='btn loginPage__submit'
           ></input>
         </form>
       </div>
