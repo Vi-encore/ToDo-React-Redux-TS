@@ -1,6 +1,6 @@
 import React from 'react'
 // import { Route, Router } from 'react-router-dom'
-import checkLogin from '../functions/checkLogin'
+import checkLogin from '../utils/checkLogin'
 
 export default function LoginPage() {
   return (
@@ -9,7 +9,7 @@ export default function LoginPage() {
         <h1 className='loginPage__header'>Login form</h1>
         <form
           className='loginPage__form'
-          onSubmit={e => {
+          onSubmit={(e: any) => {
             e.preventDefault()
             checkLogin(e.target[0].value)
           }}
