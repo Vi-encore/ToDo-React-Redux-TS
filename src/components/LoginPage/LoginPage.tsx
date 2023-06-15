@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route } from 'react-router-dom'
+// import { Route, Router } from 'react-router-dom'
 import checkLogin from '../functions/checkLogin'
 
 export default function LoginPage() {

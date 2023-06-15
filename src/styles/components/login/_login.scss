@@ -34,10 +34,15 @@
     min-width: 200px;
     @include transition;
 
-    &:focus,
-    &:active {
+    &:focus {
       outline: none;
       @include border(1px, $main-btn-active-bg);
+    }
+
+    &:disabled {
+      outline: none;
+      @include border(1px, $secondary-btn-border-color);
+      background-color: $card-bg-color;
     }
   }
 

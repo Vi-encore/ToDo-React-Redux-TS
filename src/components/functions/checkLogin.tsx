@@ -21,11 +21,11 @@ export default function checkLogin(login: string) {
   if (!isLogin) {
     console.log('no')
     setLogin(login)
-    return <div>Help</div>
+    // return <div>Help</div>
     // return <Dashboard />
   } else {
     console.log('yes')
     localStorage.clear()
-    return <Navigate to='/dashboard' replace={true} />
+    // return <Navigate to='/dashboard' replace={true} />
   }
 }
