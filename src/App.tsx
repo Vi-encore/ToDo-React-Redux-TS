@@ -1,8 +1,9 @@
 // import { useState } from 'react'
-// import '../styles/App.scss'
+// import './styles/App.scss'
 import { Routes, Route } from 'react-router-dom'
-import LoginPage from 'components/LoginPage/LoginPage'
-import Dashboard from 'components/Dashboard/Dashboard'
+import LoginPage from './components/LoginPage/LoginPage'
+import Dashboard from './components/Dashboard/Dashboard'
+// import Dashboard from 'components/Dashboard/Dashboard'
 
 function App() {
   return (
