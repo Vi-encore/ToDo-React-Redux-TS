@@ -1,8 +1,12 @@
 // import { createContext, useContext, useMemo } from 'react'
-import { useNavigate, Link } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+// import { useState } from 'react'
+// import { redirect } from 'react-router-dom'
+// import Dashboard from '../../components/Dashboard/Dashboard'
 
 // import { Link } from 'react-router-dom'
-function setlogin(login: string) {
+function setLogin(login: string) {
   localStorage.setItem('login', login)
 }
 
@@ -11,17 +15,17 @@ function deleteLogin() {
 }
 
 export default function checkLogin(login: string) {
-  console.log(login)
-
-  const getLogin = localStorage.getItem('login')
+  const isLogin = localStorage.getItem('login')
   //   const navigate = useNavigate()
-  //   let login: object = document.getElementById('#loginPage__input')?.nodeValue
-  //   console.log(login)
 
-  if (getLogin) {
-    console.log('hi')
-    localStorage.clear()
+  if (!isLogin) {
+    console.log('no')
+    setLogin(login)
+    return <div>Help</div>
+    // return <Dashboard />
   } else {
-    setlogin(login)
+    console.log('yes')
+    localStorage.clear()
+    return <Navigate to='/dashboard' replace={true} />
   }
 }
