@@ -31,6 +31,14 @@
     padding: 18px;
     border-radius: $r-base;
     @include text;
+    min-width: 200px;
+    @include transition;
+
+    &:focus,
+    &:active {
+      outline: none;
+      @include border(1px, $main-btn-active-bg);
+    }
   }
 
   &__submit {
