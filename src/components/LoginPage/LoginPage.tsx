@@ -11,7 +11,7 @@ export default function LoginPage() {
           className='loginPage__form'
           onSubmit={e => {
             e.preventDefault()
-            checkLogin()
+            checkLogin(e.target[0].value)
           }}
         >
           <label htmlFor='login'>Email</label>
