@@ -1,30 +1,56 @@
-import React from 'react'
 // import { Route, Router } from 'react-router-dom'
-import checkLogin from '../utils/checkLogin'
+
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
+  const [loginInput, setLoginInput] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleInput = (event: any) => {
+    setLoginInput(event.target.value);
+  };
+
+  const handleLogin = (event: any) => {
+    event.preventDefault();
+    const loginStore = localStorage.getItem("login");
+
+    if (!loginStore) {
+      localStorage.setItem("login", loginInput);
+      navigate("/dashboard");
+    } else {
+      navigate("/dashboard");
+    }
+  };
+
   return (
-    <div className='loginPage'>
-      <div className='loginPage__box'>
-        <h1 className='loginPage__header'>Login form</h1>
+    <div className="loginPage">
+      <div className="loginPage__box">
+        <h1 className="loginPage__header">Login form</h1>
         <form
-          className='loginPage__form'
+          className="loginPage__form"
           onSubmit={(e: any) => {
-            e.preventDefault()
-            checkLogin(e.target[0].value)
+            handleLogin(e);
           }}
         >
-          <label className='loginPage__label' htmlFor='login'>
+          <label className="loginPage__label" htmlFor="login">
             Email
           </label>
-          <input name='login' type='login' className='loginPage__input'></input>
           <input
-            type='submit'
-            value='Submit'
-            className='btn loginPage__submit'
+            name="login"
+            type="login"
+            className="loginPage__input"
+            value={loginInput}
+            onChange={handleInput}
           ></input>
+          <input
+            type="submit"
+            value="Submit"
+            className="btn loginPage__submit"
+          />
         </form>
       </div>
     </div>
-  )
+  );
 }
