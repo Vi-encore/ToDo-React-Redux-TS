@@ -14,12 +14,16 @@ export default function LoginPage() {
 
   const handleLogin = (event: any) => {
     event.preventDefault();
+    // const inputVal = event.target[0].value;
     const loginStore = localStorage.getItem("login");
 
     if (!loginStore) {
       localStorage.setItem("login", loginInput);
       navigate("/dashboard");
+    } else if (loginInput === loginStore) {
+      navigate("/dashboard");
     } else {
+      localStorage.setItem("login", loginInput);
       navigate("/dashboard");
     }
   };
@@ -34,21 +38,23 @@ export default function LoginPage() {
             handleLogin(e);
           }}
         >
-          <label className="loginPage__label" htmlFor="login">
+          <label className="loginPage__label" htmlFor="email">
             Email
           </label>
           <input
-            name="login"
-            type="login"
+            name="email"
+            type="email"
             className="loginPage__input"
             value={loginInput}
             onChange={handleInput}
           ></input>
-          <input
+          <button
             type="submit"
             value="Submit"
             className="btn loginPage__submit"
-          />
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
