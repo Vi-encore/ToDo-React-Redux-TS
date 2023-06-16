@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [loginInput, setLoginInput] = useState("");
+  const loginStore = localStorage.getItem("login");
 
   const navigate = useNavigate();
 
@@ -15,7 +16,6 @@ export default function LoginPage() {
   const handleLogin = (event: any) => {
     event.preventDefault();
     // const inputVal = event.target[0].value;
-    const loginStore = localStorage.getItem("login");
 
     if (!loginStore) {
       localStorage.setItem("login", loginInput);
@@ -28,6 +28,9 @@ export default function LoginPage() {
     }
   };
 
+  // if (loginStore) {
+  //   navigate("/dashboard");
+  // } else {
   return (
     <div className="loginPage">
       <div className="loginPage__box">
@@ -59,4 +62,5 @@ export default function LoginPage() {
       </div>
     </div>
   );
+  // }
 }
