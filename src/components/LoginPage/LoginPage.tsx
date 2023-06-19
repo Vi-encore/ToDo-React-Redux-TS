@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
 
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
@@ -12,9 +13,6 @@ const LoginPage = () => {
   };
 
   const handleLogin = (event: any) => {
-    event.preventDefault();
-    // const inputVal = event.target[0].value;
-
     if (!loginStore) {
       localStorage.setItem("login", loginInput);
       navigate("/dashboard");
@@ -33,30 +31,32 @@ const LoginPage = () => {
     <div className="loginPage">
       <div className="loginPage__box">
         <h1 className="loginPage__header">Login form</h1>
-        <form
-          className="loginPage__form"
-          onSubmit={(e: any) => {
+        <Formik
+          initialValues={{ email: "" }}
+          onSubmit={(e: object) => {
             handleLogin(e);
           }}
         >
-          <label className="loginPage__label" htmlFor="email">
-            Email
-          </label>
-          <input
-            name="email"
-            type="email"
-            className="loginPage__input"
-            value={loginInput}
-            onChange={handleInput}
-          ></input>
-          <button
-            type="submit"
-            value="Submit"
-            className="btn loginPage__submit"
-          >
-            Submit
-          </button>
-        </form>
+          <Form className="loginPage__form">
+            <label className="loginPage__label" htmlFor="email">
+              Email
+            </label>
+            <Field
+              name="email"
+              type="email"
+              className="loginPage__input"
+              value={loginInput}
+              onChange={handleInput}
+            ></Field>
+            <button
+              type="submit"
+              value="Submit"
+              className="btn loginPage__submit"
+            >
+              Submit
+            </button>
+          </Form>
+        </Formik>
       </div>
     </div>
   );
