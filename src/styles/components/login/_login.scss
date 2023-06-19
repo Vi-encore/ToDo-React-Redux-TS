@@ -29,7 +29,7 @@
   &__input {
     @include border(1px, $secondary-btn-border-color);
     padding: 18px;
-    border-radius: $r-base;
+    border-radius: $r-sm;
     @include text;
     min-width: 200px;
     @include transition;
