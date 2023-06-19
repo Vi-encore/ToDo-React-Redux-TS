@@ -68,7 +68,7 @@ const LoginPage = () => {
           </label>
           <input
             name="email"
-            type={"email"}
+            type={"text"}
             // onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             // value={formik.values.email && loginInput}
