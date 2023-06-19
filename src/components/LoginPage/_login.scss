@@ -47,6 +47,12 @@
       @include border(1px, $secondary-btn-border-color);
       background-color: $card-bg-color;
     }
+
+    &:invalid {
+      @include border(1px, $error-text-color);
+      background-color: $error-bg-color;
+      color: $error-text-color;
+    }
   }
 
   &__submit {
