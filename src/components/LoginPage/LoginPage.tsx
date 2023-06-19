@@ -1,11 +1,11 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-import * as Yup from "yup";
+import { object, string } from "yup";
 import "components/LoginPage/_login.scss";
 
-const DisplayingErrorMessagesSchema = Yup.object().shape({
-  email: Yup.string().email("Invalid email"),
+const DisplayingErrorMessagesSchema = object().shape({
+  email: string().email("Invalid email"),
 });
 
 const validate = (values: any, func: any) => {
@@ -27,7 +27,7 @@ const LoginPage = () => {
   const loginStore: any = localStorage.getItem("login");
   const navigate = useNavigate();
   // const submitBtn: any = document.querySelector(".loginPage__submit");
-  const inputField: any = document.querySelector(".loginPage__input");
+  // const inputField: any = document.querySelector(".loginPage__input");
   // const navigate = useNavigate();
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
