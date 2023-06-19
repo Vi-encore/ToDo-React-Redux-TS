@@ -151,7 +151,7 @@ const LoginPage = () => {
     //   }
   };
 
-  // console.log(formik.errors.email);
+  // console.log(formik.handleChange);
 
   return (
     <div className="loginPage">
@@ -169,9 +169,9 @@ const LoginPage = () => {
             onBlur={formik.handleBlur}
             value={formik.values.email}
             className={
-              formik.errors.email
-                ? "loginPage__input--error"
-                : "loginPage__input"
+              !formik.errors.email
+                ? "loginPage__input"
+                : "loginPage__input--error"
             }
           />
           {formik.touched.email && formik.errors.email && (
