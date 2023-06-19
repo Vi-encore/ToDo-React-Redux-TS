@@ -64,6 +64,10 @@
     @include border(1px, $error-text-color);
     background-color: $error-bg-color;
     color: $error-text-color;
+
+    &:focus-visible {
+      outline: none;
+    }
   }
 
   &__submit {
