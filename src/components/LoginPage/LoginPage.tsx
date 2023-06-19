@@ -102,15 +102,13 @@ const DisplayingErrorMessagesSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email"),
 });
 
-const navigate = useNavigate();
-
-const validate = (values: any, func: any, inputField: any) => {
+const validate = (values: any, func: any) => {
   let errors: any = {};
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!regex.test(values)) {
     errors.email = "Invalid Email";
-    // inputField.invalid = true;
+
     console.log(errors.email);
   } else {
     func();
@@ -122,6 +120,7 @@ const validate = (values: any, func: any, inputField: any) => {
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
   const loginStore: any = localStorage.getItem("login");
+  const navigate = useNavigate();
   // const submitBtn: any = document.querySelector(".loginPage__submit");
   const inputField: any = document.querySelector(".loginPage__input");
   // const navigate = useNavigate();
@@ -154,7 +153,7 @@ const LoginPage = () => {
           }}
           validationSchema={DisplayingErrorMessagesSchema}
           onSubmit={() => {
-            validate(loginInput, handleLogin, inputField);
+            validate(loginInput, handleLogin);
           }}
         >
           {/* {({ errors, touched }) => ( */}
