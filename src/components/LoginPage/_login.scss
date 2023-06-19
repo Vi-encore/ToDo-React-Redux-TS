@@ -48,11 +48,22 @@
       background-color: $card-bg-color;
     }
 
-    &:invalid {
-      @include border(1px, $error-text-color);
-      background-color: $error-bg-color;
-      color: $error-text-color;
-    }
+    // &:invalid {
+    //   @include border(1px, $error-text-color);
+    //   background-color: $error-bg-color;
+    //   color: $error-text-color;
+    // }
+  }
+
+  &__input--error {
+    padding: 18px;
+    border-radius: $r-sm;
+    @include text;
+    min-width: 200px;
+    @include transition;
+    @include border(1px, $error-text-color);
+    background-color: $error-bg-color;
+    color: $error-text-color;
   }
 
   &__submit {

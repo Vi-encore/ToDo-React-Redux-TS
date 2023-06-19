@@ -4,12 +4,13 @@ import { useFormik } from "formik";
 // import { object, string } from "yup";
 import "components/LoginPage/_login.scss";
 
-const validate = (values: any, func: any) => {
+const validate = (values: any, func: any, setValid: any) => {
   const errors: any = {};
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
   if (!regex.test(values)) {
     errors.email = "Invalid Email";
+    setValid(false);
     console.log(errors.email);
   } else {
     func();
@@ -20,6 +21,7 @@ const validate = (values: any, func: any) => {
 
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
+  const [valid, setValid] = useState(true);
   const loginStore: any = localStorage.getItem("login");
   const navigate = useNavigate();
 
@@ -28,18 +30,22 @@ const LoginPage = () => {
       email: "",
     },
     onSubmit: () => {
-      validate(loginInput, handleLogin);
+      // console.log(formik.errors);
+
+      validate(loginInput, handleLogin, setValid);
     },
   });
 
   const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     setLoginInput(e.target.value);
+    setValid(true);
   };
 
   const handleLogin = () => {
     if (!loginStore) {
       localStorage.setItem("login", loginInput);
       navigate("/dashboard");
+      setValid(false);
     } else if (loginInput.length > 1) {
       if (loginInput === loginStore) {
         navigate("/dashboard");
@@ -62,7 +68,8 @@ const LoginPage = () => {
           <input
             name="email"
             type="email"
-            className="loginPage__input"
+            // className="loginPage__input"
+            className={valid ? "loginPage__input" : "loginPage__input--error"}
             value={loginInput}
             onChange={handleInput}
           />
