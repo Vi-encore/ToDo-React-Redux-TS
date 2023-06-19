@@ -14,4 +14,9 @@
   &:active {
     background-color: $main-btn-active-bg;
   }
+
+  &:disabled {
+    background-color: $disabled-btn-bg-color;
+    color: $disabled-btn-text-color;
+  }
 }

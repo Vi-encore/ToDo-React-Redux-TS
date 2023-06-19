@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
+import "components/LoginPage/_login.scss";
 
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
+
   const loginStore = localStorage.getItem("login");
+  const submitBtn = document.querySelector(".loginPage__submit");
 
   const navigate = useNavigate();
 
@@ -16,11 +19,15 @@ const LoginPage = () => {
     if (!loginStore) {
       localStorage.setItem("login", loginInput);
       navigate("/dashboard");
-    } else if (loginInput === loginStore) {
-      navigate("/dashboard");
-    } else {
-      localStorage.setItem("login", loginInput);
-      navigate("/dashboard");
+    } else if (loginInput.length > 1) {
+      console.log(submitBtn);
+
+      if (loginInput === loginStore) {
+        navigate("/dashboard");
+      } else {
+        localStorage.setItem("login", loginInput);
+        navigate("/dashboard");
+      }
     }
   };
 
@@ -51,6 +58,7 @@ const LoginPage = () => {
             <button
               type="submit"
               value="Submit"
+              disabled={!loginInput}
               className="btn loginPage__submit"
             >
               Submit
