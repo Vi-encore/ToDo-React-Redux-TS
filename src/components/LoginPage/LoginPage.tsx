@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import { object, string } from "yup";
 import "components/LoginPage/_login.scss";
 
-const validate = (values: any, func: any, setValid: any) => {
+const validate = (values: string, func: any, setValid: any) => {
   const errors: any = {};
   const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -22,7 +22,7 @@ const validate = (values: any, func: any, setValid: any) => {
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
   const [valid, setValid] = useState(true);
-  const loginStore: any = localStorage.getItem("login");
+  const loginStore: string | null = localStorage.getItem("login");
   const navigate = useNavigate();
 
   const formik = useFormik({
