@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
-// import { object, string } from "yup";
+import { object, string } from "yup";
 import "components/LoginPage/_login.scss";
 
 const validate = (values: any, func: any, setValid: any) => {
@@ -29,9 +29,10 @@ const LoginPage = () => {
     initialValues: {
       email: "",
     },
-    onSubmit: () => {
-      // console.log(formik.errors);
-
+    validationSchema: object({
+      email: string().email("Invalid email address"),
+    }),
+    onSubmit: (values) => {
       validate(loginInput, handleLogin, setValid);
     },
   });
@@ -67,12 +68,18 @@ const LoginPage = () => {
           </label>
           <input
             name="email"
-            type="text"
-            // className="loginPage__input"
+            type={"email"}
+            // onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            // value={formik.values.email && loginInput}
+            //helperText={formik.errors.email ? formik.errors.email : ""}
             className={valid ? "loginPage__input" : "loginPage__input--error"}
             value={loginInput}
             onChange={handleInput}
           />
+          {formik.touched.email && formik.errors.email && (
+            <div>{formik.errors.email}</div>
+          )}
 
           <button
             type="submit"
@@ -89,3 +96,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+//
