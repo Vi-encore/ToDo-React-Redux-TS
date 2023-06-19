@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "components/LoginPage/LoginPage";
-
 import Dashboard from "components/Dashboard/Dashboard";
 
 const App = () => {
