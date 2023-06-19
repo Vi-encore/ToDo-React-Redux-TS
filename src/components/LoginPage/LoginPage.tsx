@@ -29,14 +29,10 @@ const LoginPage = () => {
     validateOnBlur: false,
     onSubmit: () => {
       console.log(formik);
-      // formik.errors.email && formik.setStatus(true);
+
       // console.log(formik.status);
 
-      // validate(loginInput, handleLogin, setValid);
       handleLogin();
-
-      // console.log("hi");
-      // console.log(formik.dirty);
     },
   });
 
