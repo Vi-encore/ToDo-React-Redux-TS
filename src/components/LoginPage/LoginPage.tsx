@@ -67,7 +67,7 @@ const LoginPage = () => {
           </label>
           <input
             name="email"
-            type="email"
+            type="text"
             // className="loginPage__input"
             className={valid ? "loginPage__input" : "loginPage__input--error"}
             value={loginInput}
