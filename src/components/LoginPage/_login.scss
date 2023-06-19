@@ -80,7 +80,11 @@
   }
 }
 
-// @media screen and (max-width: $mob) {
-//   // .loginPage {
-//   // }
-// }
+@media screen and (max-width: $mob) {
+  .loginPage {
+    &__box {
+      width: 90%;
+      box-shadow: none;
+    }
+  }
+}
