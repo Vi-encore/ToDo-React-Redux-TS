@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { object, string } from "yup";
+import routes from "components/utils/Routes";
 import "components/LoginPage/_login.scss";
 
 const validate = (values: string, func: any, setValid: any) => {
@@ -45,14 +46,14 @@ const LoginPage = () => {
   const handleLogin = () => {
     if (!loginStore) {
       localStorage.setItem("login", loginInput);
-      navigate("/dashboard");
+      navigate(routes.dashboard);
       setValid(false);
     } else if (loginInput.length > 1) {
       if (loginInput === loginStore) {
-        navigate("/dashboard");
+        navigate(routes.dashboard);
       } else {
         localStorage.setItem("login", loginInput);
-        navigate("/dashboard");
+        navigate(routes.dashboard);
       }
     }
   };
