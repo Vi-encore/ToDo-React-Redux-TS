@@ -32,7 +32,7 @@ const LoginPage = () => {
     validationSchema: object({
       email: string().email("Invalid email address"),
     }),
-    onSubmit: (values) => {
+    onSubmit: () => {
       validate(loginInput, handleLogin, setValid);
     },
   });
@@ -96,4 +96,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-//
