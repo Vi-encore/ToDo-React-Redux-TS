@@ -4,24 +4,24 @@ import { useFormik } from "formik";
 // import { object, string } from "yup";
 import "components/LoginPage/_login.scss";
 
+const validate = (values: any, func: any) => {
+  const errors: any = {};
+  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  if (!regex.test(values)) {
+    errors.email = "Invalid Email";
+    console.log(errors.email);
+  } else {
+    func();
+  }
+
+  return errors;
+};
+
 const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
   const loginStore: any = localStorage.getItem("login");
   const navigate = useNavigate();
-
-  const validate = (values: any, func: any) => {
-    const errors: any = {};
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-    if (!regex.test(values)) {
-      errors.email = "Invalid Email";
-      console.log(errors.email);
-    } else {
-      func();
-    }
-
-    return errors;
-  };
 
   const formik = useFormik({
     initialValues: {
