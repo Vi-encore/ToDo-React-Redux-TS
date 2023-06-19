@@ -1,12 +1,9 @@
-// import { useState } from 'react'
-// import './styles/App.scss'
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "components/LoginPage/LoginPage";
-// import LoginPage from 'components/LoginPage/LoginPage'
-import Dashboard from "components/Dashboard/Dashboard";
-// import Dashboard from 'src/components/Dashboard/Dashboard'
 
-function App() {
+import Dashboard from "components/Dashboard/Dashboard";
+
+const App = () => {
   return (
     <div className="App">
       <Routes>
@@ -15,6 +12,6 @@ function App() {
       </Routes>
     </div>
   );
-}
+};
 
 export default App;

@@ -1,9 +1,7 @@
-// import { Route, Router } from 'react-router-dom'
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function LoginPage() {
+const LoginPage = () => {
   const [loginInput, setLoginInput] = useState("");
   const loginStore = localStorage.getItem("login");
 
@@ -63,4 +61,6 @@ export default function LoginPage() {
     </div>
   );
   // }
-}
+};
+
+export default LoginPage;
