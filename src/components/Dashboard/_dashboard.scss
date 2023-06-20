@@ -9,7 +9,7 @@
     padding: 0 30px;
     height: 120px;
     @include flex-between;
-    background-color: $card-bg-color;
+    background-color: $card-head-bg-color;
   }
 
   &__email {
@@ -25,9 +25,54 @@
   &__cards {
     @include flex-between;
     flex-wrap: wrap;
+    padding-top: 35px;
 
     &-card {
       width: 30%;
+      background-color: $card-bg-color;
+      padding: 20px 25px 15px 25px;
+
+      &-textarea--title {
+        font-size: $fs-lg;
+        font-weight: $fw-semibold;
+        line-height: 44px;
+        margin: 0;
+      }
+
+      &-textarea--text {
+        font-weight: $fw-semibold;
+        font-size: $fs-sm;
+        color: $card-text-color;
+        text-align: justify;
+
+        overflow-y: scroll;
+        display: -webkit-box;
+        -webkit-line-clamp: 7; /* number of lines to show */
+        line-clamp: 7;
+        -webkit-box-orient: vertical;
+      }
+
+      &-btns {
+        // @include flex-between;
+        padding: 15px;
+        display: flex;
+        flex-direction: row;
+        justify-content: end;
+
+        &--edit {
+          margin-right: 15px;
+        }
+      }
     }
   }
+}
+
+//if more then 7 lines
+
+.line-clamp {
+  overflow-y: scroll;
+  display: -webkit-box;
+  -webkit-line-clamp: 7; /* number of lines to show */
+  line-clamp: 7;
+  -webkit-box-orient: vertical;
 }
