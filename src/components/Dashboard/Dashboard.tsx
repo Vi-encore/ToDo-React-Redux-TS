@@ -19,12 +19,45 @@ const Dashboard = () => {
       <button
         className="dashboard__create-card-btn"
         onClick={() => {
-          console.log("hi");
+          console.log("Create Card btn");
         }}
       >
-        Create
+        Create Card
       </button>
-      <h1>I am Dashboard page!</h1>
+      <div className="dashboard__cards">
+        <div className="dashboard__card">
+          <div className="dashboard__card-textarea">
+            <h2 className="dashboard__card-textarea--title">Card title</h2>
+            <p className="dashboard__card-textarea--text">
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum."
+            </p>
+          </div>
+          <div className="dashboard__card-btns">
+            <button
+              className="dashboard__card-btns--edit"
+              onClick={() => {
+                console.log("Edit btn");
+              }}
+            >
+              Edit
+            </button>
+            <button
+              className="dashboard__card-btns--delete"
+              onClick={() => {
+                console.log("Delete btn");
+              }}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
