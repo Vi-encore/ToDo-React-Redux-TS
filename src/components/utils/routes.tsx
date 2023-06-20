@@ -1,6 +1,5 @@
 enum routes {
   login = "/",
-  loginPage = "/login",
   dashboard = "/dashboard",
 }
 

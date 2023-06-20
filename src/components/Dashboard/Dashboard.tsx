@@ -13,14 +13,14 @@ const Dashboard = () => {
     <div className="dashboard">
       <div className="dashboard__header">
         <p className="dashboard__email">{localStorage.getItem("login")}</p>
-        <button className="dashboard__exit-btn" onClick={Click}>
+        <button className="dashboardBtn dashboard__exit-btn" onClick={Click}>
           Log out
         </button>
       </div>
       <div className="dashboard__wrap">
         <div className="dashboard__create-card-btn--wrap">
           <button
-            className="dashboard__create-card-btn"
+            className="dashboardBtn dashboard__create-card-btn"
             onClick={() => {
               console.log("Create Card btn");
             }}
@@ -29,10 +29,12 @@ const Dashboard = () => {
           </button>
         </div>
         <div className="dashboard__cards">
-          <div className="dashboard__card">
-            <div className="dashboard__card-textarea">
-              <h2 className="dashboard__card-textarea--title">Card title</h2>
-              <p className="dashboard__card-textarea--text">
+          <div className="dashboard__cards-card">
+            <div className="dashboard__cards-card-textarea">
+              <h2 className="dashboard__cards-card-textarea--title">
+                Card title
+              </h2>
+              <p className="dashboard__cards-card-textarea--text">
                 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
                 eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
                 enim ad minim veniam, quis nostrud exercitation ullamco laboris
@@ -42,9 +44,9 @@ const Dashboard = () => {
                 sunt in culpa qui officia deserunt mollit anim id est laborum."
               </p>
             </div>
-            <div className="dashboard__card-btns">
+            <div className="dashboard__cards-card-btns">
               <button
-                className="dashboard__card-btns--edit"
+                className="dashboard__cards-card-btns--edit"
                 onClick={() => {
                   console.log("Edit btn");
                 }}
@@ -52,7 +54,7 @@ const Dashboard = () => {
                 Edit
               </button>
               <button
-                className="dashboard__card-btns--delete"
+                className="dashboard__cards-card-btns--delete"
                 onClick={() => {
                   console.log("Delete btn");
                 }}

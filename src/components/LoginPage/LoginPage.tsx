@@ -4,6 +4,7 @@ import { object, string } from "yup";
 import routes from "components/utils/routes";
 import "components/LoginPage/_login.scss";
 import Dashboard from "components/Dashboard/Dashboard";
+import { useEffect } from "react";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -33,71 +34,66 @@ const LoginPage = () => {
   const handleLogin = () => {
     localStorage.setItem("login", formik.values.email);
     navigate(routes.dashboard);
-
-    //     }
-    //   }
   };
 
-  ///basic.  Could be changed
-  if (localStorage.getItem("login")) {
-    return <Dashboard />;
-  } else {
-    return (
-      <div className="loginPage">
-        <div className="loginPage__box">
-          <h1 className="loginPage__header">Login form</h1>
+  //secure routes?
+  useEffect(() => {
+    localStorage.getItem("login") && navigate(routes.dashboard);
+  });
 
-          <form
-            className="loginPage__form"
-            onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-              formik.handleSubmit(e);
-              formik.setStatus("false");
+  return (
+    <div className="loginPage">
+      <div className="loginPage__box">
+        <h1 className="loginPage__header">Login form</h1>
+
+        <form
+          className="loginPage__form"
+          onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+            formik.handleSubmit(e);
+            formik.setStatus("false");
+          }}
+        >
+          <label htmlFor="email" className="loginPage__label">
+            Email
+          </label>
+          <input
+            name="email"
+            type={"text"}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+              formik.handleChange(e);
+              formik.setStatus("true");
             }}
-          >
-            <label htmlFor="email" className="loginPage__label">
-              Email
-            </label>
-            <input
-              name="email"
-              type={"text"}
-              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-                formik.handleChange(e);
-                formik.setStatus("true");
-              }}
-              onBlur={formik.handleBlur}
-              value={formik.values.email}
-              className={
-                (formik.values.email.length === 0 && "loginPage__input") ||
-                (formik.errors.email
-                  ? formik.status === "false"
-                    ? "loginPage__input--error"
-                    : "loginPage__input"
-                  : "loginPage__input")
-              }
-            />
-            {formik.touched.email &&
-              formik.errors.email &&
-              (formik.status === "false" ? (
-                <div className="loginPage__error-msg">
-                  {formik.errors.email}
-                </div>
-              ) : (
-                <></>
-              ))}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            className={
+              (formik.values.email.length === 0 && "loginPage__input") ||
+              (formik.errors.email
+                ? formik.status === "false"
+                  ? "loginPage__input--error"
+                  : "loginPage__input"
+                : "loginPage__input")
+            }
+          />
+          {formik.touched.email &&
+            formik.errors.email &&
+            (formik.status === "false" ? (
+              <div className="loginPage__error-msg">{formik.errors.email}</div>
+            ) : (
+              <></>
+            ))}
 
-            <button
-              type="submit"
-              value="Submit"
-              disabled={!formik.values.email.length}
-              className="btn loginPage__submit"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
+          <button
+            type="submit"
+            value="Submit"
+            disabled={!formik.values.email.length}
+            className="btn loginPage__submit"
+          >
+            Submit
+          </button>
+        </form>
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default LoginPage;
