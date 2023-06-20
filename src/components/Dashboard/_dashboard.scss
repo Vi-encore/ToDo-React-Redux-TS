@@ -10,6 +10,7 @@
     height: 120px;
     @include flex-between;
     background-color: $card-head-bg-color;
+    overflow: hidden;
   }
 
   &__email {
@@ -20,6 +21,40 @@
 
   &__wrap {
     padding: 30px;
+    // overflow: auto;
+    // scrollbar-color: $card-btn-section-color $white;
+    // scroll-behavior: smooth;
+    // scrollbar-width: thin;
+
+    // &::-webkit-scrollbar {
+    //   width: 10px;
+    //   width: 10px;
+    // }
+    // &::-webkit-scrollbar-track {
+    //   border-radius: 5px;
+    //   background-color: $white;
+    // }
+
+    // &::-webkit-scrollbar-track:hover {
+    //   background-color: $white;
+    // }
+
+    // &::-webkit-scrollbar-track:active {
+    //   background-color: $white;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //   border-radius: 5px;
+    //   background-color: $card-btn-section-color;
+    // }
+
+    // &::-webkit-scrollbar-thumb:hover {
+    //   background-color: $card-btn-section-color;
+    // }
+
+    // &::-webkit-scrollbar-thumb:active {
+    //   background-color: $card-btn-section-color;
+    // }
   }
 
   &__cards {
@@ -27,14 +62,28 @@
     flex-wrap: wrap;
     padding-top: 35px;
 
+    // overflow-y: auto;
+    // &::-webkit-scrollbar {
+    //   width: 10px;
+    // }
+
+    // &::-webkit-scrollbar-thumb {
+    //   background-color: $card-btn-section-color;
+    //   border-radius: $r-md;
+    // }
+
     &-card {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 304px;
       width: 30%;
       background-color: $card-bg-color;
       padding-top: 20px;
       border-radius: $r-sm;
 
       &-textarea {
-        padding: 0 25px;
+        padding-left: 25px;
 
         &--title {
           font-size: $fs-lg;
@@ -48,12 +97,22 @@
           font-size: $fs-sm;
           color: $card-text-color;
           text-align: justify;
+          padding-right: 25px;
+          margin-bottom: 0;
 
-          overflow-y: scroll;
+          overflow-y: auto;
           display: -webkit-box;
           -webkit-line-clamp: 7; /* number of lines to show */
-          line-clamp: 7;
           -webkit-box-orient: vertical;
+        }
+
+        &--text::-webkit-scrollbar {
+          width: 10px;
+        }
+
+        &--text::-webkit-scrollbar-thumb {
+          background-color: $card-btn-section-color;
+          border-radius: $r-md;
         }
       }
 
@@ -64,6 +123,7 @@
         flex-direction: row;
         justify-content: end;
         background-color: $card-btn-section-color;
+        border-radius: 0 0 $r-sm $r-sm;
 
         &--edit {
           margin-right: 15px;
