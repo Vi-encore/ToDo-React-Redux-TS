@@ -30,24 +30,11 @@ const LoginPage = () => {
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: () => {
-      console.log(formik);
-
-      // console.log(formik.status);
-
       handleLogin();
     },
   });
 
   const handleLogin = () => {
-    //   if (!formik.values.email) {
-    //     localStorage.setItem("login", loginInput);
-    //     navigate(routes.dashboard);
-    //     setValid(false);
-    //   } else if (loginInput.length > 1) {
-    //     if (loginInput === loginStore) {
-    //       navigate(routes.dashboard);
-    //     } else {
-
     localStorage.setItem("login", formik.values.email);
     navigate(routes.dashboard);
 
@@ -55,7 +42,7 @@ const LoginPage = () => {
     //   }
   };
 
-  // console.log(formik.handleChange);
+  ///basic.  Could be changed
   if (localStorage.getItem("login")) {
     return <Dashboard />;
   } else {
@@ -64,20 +51,34 @@ const LoginPage = () => {
         <div className="loginPage__box">
           <h1 className="loginPage__header">Login form</h1>
 
-          <form className="loginPage__form" onSubmit={formik.handleSubmit}>
+          <form
+            className="loginPage__form"
+            onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+              formik.handleSubmit(e);
+              formik.setStatus("false");
+            }}
+          >
             <label htmlFor="email" className="loginPage__label">
               Email
             </label>
             <input
               name="email"
               type={"text"}
-              onChange={formik.handleChange}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                formik.handleChange(e);
+                console.log(e);
+                formik.setStatus("true");
+                console.log(formik.status);
+              }}
               onBlur={formik.handleBlur}
               value={formik.values.email}
               className={
-                !formik.errors.email
-                  ? "loginPage__input"
-                  : "loginPage__input--error"
+                (formik.values.email.length == 0 && "loginPage__input") ||
+                (formik.errors.email
+                  ? formik.status === "false"
+                    ? "loginPage__input--error"
+                    : "loginPage__input"
+                  : "loginPage__input")
               }
             />
             {formik.touched.email && formik.errors.email && (
