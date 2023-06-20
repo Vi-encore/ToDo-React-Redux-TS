@@ -1,0 +1,17 @@
+@import "src/styles/index";
+@import "src/styles/components/Button";
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    padding: 0 30px;
+    height: 120px;
+    @include flex-between;
+  }
+
+  &__wrap {
+    padding: 0 30px;
+  }
+}
