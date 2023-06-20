@@ -1,4 +1,3 @@
-// import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { object, string } from "yup";
@@ -7,9 +6,6 @@ import "components/LoginPage/_login.scss";
 import Dashboard from "components/Dashboard/Dashboard";
 
 const LoginPage = () => {
-  // const [loginInput, setLoginInput] = useState("");
-  // const [valid, setValid] = useState(true);
-  // const loginStore: string | null = localStorage.getItem("login");
   const navigate = useNavigate();
 
   const validationScheme = object({
@@ -66,14 +62,12 @@ const LoginPage = () => {
               type={"text"}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                 formik.handleChange(e);
-                console.log(e);
                 formik.setStatus("true");
-                console.log(formik.status);
               }}
               onBlur={formik.handleBlur}
               value={formik.values.email}
               className={
-                (formik.values.email.length == 0 && "loginPage__input") ||
+                (formik.values.email.length === 0 && "loginPage__input") ||
                 (formik.errors.email
                   ? formik.status === "false"
                     ? "loginPage__input--error"
