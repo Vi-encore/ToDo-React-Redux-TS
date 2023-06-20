@@ -30,26 +30,31 @@
     &-card {
       width: 30%;
       background-color: $card-bg-color;
-      padding: 20px 25px 15px 25px;
+      padding-top: 20px;
+      border-radius: $r-sm;
 
-      &-textarea--title {
-        font-size: $fs-lg;
-        font-weight: $fw-semibold;
-        line-height: 44px;
-        margin: 0;
-      }
+      &-textarea {
+        padding: 0 25px;
 
-      &-textarea--text {
-        font-weight: $fw-semibold;
-        font-size: $fs-sm;
-        color: $card-text-color;
-        text-align: justify;
+        &--title {
+          font-size: $fs-lg;
+          font-weight: $fw-semibold;
+          line-height: 44px;
+          margin: 0;
+        }
 
-        overflow-y: scroll;
-        display: -webkit-box;
-        -webkit-line-clamp: 7; /* number of lines to show */
-        line-clamp: 7;
-        -webkit-box-orient: vertical;
+        &--text {
+          font-weight: $fw-semibold;
+          font-size: $fs-sm;
+          color: $card-text-color;
+          text-align: justify;
+
+          overflow-y: scroll;
+          display: -webkit-box;
+          -webkit-line-clamp: 7; /* number of lines to show */
+          line-clamp: 7;
+          -webkit-box-orient: vertical;
+        }
       }
 
       &-btns {
@@ -58,6 +63,7 @@
         display: flex;
         flex-direction: row;
         justify-content: end;
+        background-color: $card-btn-section-color;
 
         &--edit {
           margin-right: 15px;

@@ -46,7 +46,7 @@ const Dashboard = () => {
             </div>
             <div className="dashboard__cards-card-btns">
               <button
-                className="dashboard__cards-card-btns--edit"
+                className=" dashboardCardBtn dashboard__cards-card-btns--edit"
                 onClick={() => {
                   console.log("Edit btn");
                 }}
@@ -54,7 +54,7 @@ const Dashboard = () => {
                 Edit
               </button>
               <button
-                className="dashboard__cards-card-btns--delete"
+                className="dashboardCardBtn dashboard__cards-card-btns--delete "
                 onClick={() => {
                   console.log("Delete btn");
                 }}

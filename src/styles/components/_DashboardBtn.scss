@@ -20,6 +20,24 @@
   }
 }
 
-// .dashboardCardBtn {
+.dashboardCardBtn {
+  @include btn-text;
+  @include transition;
+  padding: 18px 30px;
+  background-color: $main-btn-bg-color;
+  border: none;
+  border-radius: $r-sm;
 
-// }
+  &:hover {
+    background-color: $main-btn-hover-bg;
+  }
+
+  &:active {
+    background-color: $main-btn-active-bg;
+  }
+
+  &:disabled {
+    background-color: $disabled-btn-bg-color;
+    color: $disabled-btn-text-color;
+  }
+}
