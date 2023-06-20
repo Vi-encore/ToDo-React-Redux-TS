@@ -75,9 +75,15 @@ const LoginPage = () => {
                   : "loginPage__input")
               }
             />
-            {formik.touched.email && formik.errors.email && (
-              <div>{formik.errors.email}</div>
-            )}
+            {formik.touched.email &&
+              formik.errors.email &&
+              (formik.status === "false" ? (
+                <div className="loginPage__error-msg">
+                  {formik.errors.email}
+                </div>
+              ) : (
+                <></>
+              ))}
 
             <button
               type="submit"

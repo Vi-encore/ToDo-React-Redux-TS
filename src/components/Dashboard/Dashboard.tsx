@@ -9,10 +9,23 @@ const Dashboard = () => {
   };
 
   return (
-    <>
+    <div className="dashboard">
+      <div className="dashboard__header">
+        <p className="dashboard__email">{localStorage.getItem("login")}</p>
+        <button className="dashboard__exit-btn" onClick={Click}>
+          Log out
+        </button>
+      </div>
+      <button
+        className="dashboard__create-card-btn"
+        onClick={() => {
+          console.log("hi");
+        }}
+      >
+        Create
+      </button>
       <h1>I am Dashboard page!</h1>
-      <button onClick={Click}>exit</button>
-    </>
+    </div>
   );
 };
 

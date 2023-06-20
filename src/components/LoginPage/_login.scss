@@ -70,6 +70,11 @@
     }
   }
 
+  &__error-msg {
+    color: $error-text-color;
+    font-size: $fs-sm;
+  }
+
   &__submit {
     align-self: center;
     margin-top: 30px;
