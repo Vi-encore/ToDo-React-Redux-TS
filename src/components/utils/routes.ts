@@ -1,6 +1,6 @@
-enum routes {
+enum Redirect {
   login = "/",
   dashboard = "/dashboard",
 }
 
-export default routes;
+export default Redirect;

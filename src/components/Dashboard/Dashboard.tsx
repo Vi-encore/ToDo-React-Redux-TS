@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import routes from "components/utils/routes";
+import Redirect from "components/utils/routes";
 import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const Click = () => {
     localStorage.clear();
-    navigate(routes.login);
+    navigate(Redirect.login);
   };
 
   return (
