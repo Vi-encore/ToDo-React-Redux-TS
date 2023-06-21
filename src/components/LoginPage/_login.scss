@@ -8,7 +8,7 @@
 
   &__box {
     padding: 30px 70px;
-    width: 30%;
+    width: 40%;
     @include box-shadow;
     border-radius: $r-md;
   }
@@ -48,15 +48,54 @@
       background-color: $card-bg-color;
     }
 
-    &:invalid {
-      @include border(1px, $error-text-color);
-      background-color: $error-bg-color;
-      color: $error-text-color;
+    // &:invalid {
+    //   @include border(1px, $error-text-color);
+    //   background-color: $error-bg-color;
+    //   color: $error-text-color;
+    // }
+  }
+
+  &__input--error {
+    padding: 18px;
+    border-radius: $r-sm;
+    @include text;
+    min-width: 200px;
+    @include transition;
+    @include border(1px, $error-text-color);
+    background-color: $error-bg-color;
+    color: $error-text-color;
+
+    &:focus-visible {
+      outline: none;
     }
+  }
+
+  &__error-msg {
+    color: $error-text-color;
+    font-size: $fs-sm;
   }
 
   &__submit {
     align-self: center;
     margin-top: 30px;
+  }
+}
+
+@media screen and (max-width: $tablet) {
+  .loginPage {
+    &__box {
+      width: 70%;
+      padding: 30px 50px;
+    }
+  }
+}
+
+@media screen and (max-width: $mob) {
+  .loginPage {
+    &__box {
+      width: 90%;
+      box-shadow: none;
+      padding: 30px;
+    }
   }
 }

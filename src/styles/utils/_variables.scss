@@ -19,8 +19,10 @@ $main-btn-active-bg: #f6911a;
 $error-text-color: #ff4141;
 $error-bg-color: #ffcccc;
 
-$card-bg-color: #e7e7e7;
+$card-head-bg-color: #e7e7e7;
+$card-bg-color: #efefef;
 $card-btn-section-color: #d9d9d9;
+$card-text-color: #555555;
 
 //border-radius
 $r-sm: 5px;
@@ -39,3 +41,7 @@ $fs-lg: 36px;
 //line-height
 //font
 $main-font: "Inter", sans-serif;
+
+//max-width
+$tablet: 768px;
+$mob: 576px;

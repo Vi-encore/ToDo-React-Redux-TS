@@ -1,89 +1,104 @@
-import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { Formik, Field, Form } from "formik";
+import { useFormik } from "formik";
 import { object, string } from "yup";
+import Redirect from "components/utils/routes";
 import "components/LoginPage/_login.scss";
-
-const DisplayingErrorMessagesSchema = object().shape({
-  email: string().email("Invalid email"),
-});
-
-const validate = (values: any, func: any) => {
-  let errors: any = {};
-  const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-
-  if (!regex.test(values)) {
-    errors.email = "Invalid Email";
-    console.log(errors.email);
-  } else {
-    func();
-  }
-
-  return errors;
-};
+// import Dashboard from "components/Dashboard/Dashboard";
+import { forwardRef, useCallback, useEffect } from "react";
+import classNames from "classnames";
 
 const LoginPage = () => {
-  const [loginInput, setLoginInput] = useState("");
-  const loginStore: any = localStorage.getItem("login");
   const navigate = useNavigate();
-  // const submitBtn: any = document.querySelector(".loginPage__submit");
-  // const inputField: any = document.querySelector(".loginPage__input");
-  // const navigate = useNavigate();
 
-  const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setLoginInput(e.target.value);
-  };
+  const validationScheme = object({
+    email: string()
+      .email("Invalid email address")
+      .required()
+      .matches(
+        /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+        "Invalid email address"
+      ),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+    },
+    validationSchema: validationScheme,
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: () => {
+      handleLogin();
+    },
+  });
 
   const handleLogin = () => {
-    if (!loginStore) {
-      localStorage.setItem("login", loginInput);
-      navigate("/dashboard");
-    } else if (loginInput.length > 1) {
-      if (loginInput === loginStore) {
-        navigate("/dashboard");
-      } else {
-        localStorage.setItem("login", loginInput);
-        navigate("/dashboard");
-      }
-    }
+    localStorage.setItem("login", formik.values.email);
+    navigate(Redirect.dashboard);
   };
+
+  //secure routes?
+  useEffect(() => {
+    localStorage.getItem("login") && navigate(Redirect.dashboard);
+  });
+
+  const classes = classNames({
+    loginPage__input:
+      formik.values.email.length >= 0 ||
+      (formik.errors.email && formik.status === "true"),
+    "loginPage__input--error": formik.errors.email && formik.status === "false",
+  });
+
+  const submitHandler = useCallback(
+    (e: React.FormEvent<HTMLFormElement>) => {
+      formik.handleSubmit(e);
+      formik.setStatus("false");
+    },
+    [formik]
+  );
+
+  const changeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      formik.handleChange(e);
+      formik.setStatus("true");
+    },
+    [formik]
+  );
 
   return (
     <div className="loginPage">
       <div className="loginPage__box">
         <h1 className="loginPage__header">Login form</h1>
-        <Formik
-          initialValues={{
-            email: "",
-          }}
-          validationSchema={DisplayingErrorMessagesSchema}
-          onSubmit={() => {
-            validate(loginInput, handleLogin);
-          }}
-        >
-          {/* {({ errors, touched }) => ( */}
-          <Form className="loginPage__form">
-            <Field
-              name="email"
-              type="email"
-              className="loginPage__input"
-              value={loginInput}
-              onChange={handleInput}
-            />
-            {/* {/* If this field has been touched, and it contains an error, display
-          it */}
-            {/* {touched.email && errors.email && <div>{errors.email}</div>} */}
-            <button
-              type="submit"
-              value="Submit"
-              disabled={!loginInput}
-              className="btn loginPage__submit"
-            >
-              Submit
-            </button>
-          </Form>
-          {/* )} */}
-        </Formik>
+
+        <form className="loginPage__form" onSubmit={submitHandler}>
+          <label htmlFor="email" className="loginPage__label">
+            Email
+          </label>
+          <input
+            name="email"
+            type={"text"}
+            onChange={changeHandler}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            className={classes}
+          />
+          {formik.touched.email &&
+            formik.errors.email &&
+            (formik.status === "false" ? (
+              <div className="loginPage__error-msg">{formik.errors.email}</div>
+            ) : (
+              <></>
+            ))}
+
+          <button
+            type="submit"
+            value="Submit"
+            disabled={!formik.values.email.length}
+            className="btn loginPage__submit"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </div>
   );
