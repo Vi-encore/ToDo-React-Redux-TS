@@ -30,16 +30,19 @@ function logOut() {
 
 const initState = {
   isLoggedIn: false,
+  email: "",
 };
 
 const reducer = (state = initState, action: any) => {
   switch (action.type) {
     case LOG_ME_IN:
       return {
+        ...state,
         isLoggedIn: (state.isLoggedIn = true),
       };
     case LOG_ME_OUT:
       return {
+        ...state,
         isLoggedIn: (state.isLoggedIn = false),
       };
     default:
