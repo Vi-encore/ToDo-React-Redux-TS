@@ -5,10 +5,20 @@ import Redirect from "components/utils/routes";
 import "components/LoginPage/_login.scss";
 // import Dashboard from "components/Dashboard/Dashboard";
 import { forwardRef, useCallback, useEffect } from "react";
+// import { useSelector, useDispatch } from "react-redux";
+// import { setInputValue } from "src/app/features/inputReducer";
 import classNames from "classnames";
 
 const LoginPage = () => {
   const navigate = useNavigate();
+
+  //
+  // const inputValue = useSelector((state: any) => state.input);
+  // const dispatch = useDispatch();
+  // const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   dispatch(setInputValue(event.target.value));
+  // };
+  //
 
   const validationScheme = object({
     email: string()
@@ -78,8 +88,10 @@ const LoginPage = () => {
             name="email"
             type={"text"}
             onChange={changeHandler}
+            // onChange={handleInputChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
+            // value={inputValue}
             className={classes}
           />
           {formik.touched.email &&

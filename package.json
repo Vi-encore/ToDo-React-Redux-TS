@@ -13,11 +13,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.5",
     "classnames": "^2.3.2",
     "formik": "^2.4.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-redux": "^8.1.0",
+    "react-redux": "^8.1.1",
     "react-router-dom": "^6.13.0",
     "yup": "^1.2.0"
   },
