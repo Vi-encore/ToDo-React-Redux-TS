@@ -43,13 +43,13 @@ const LoginPage = () => {
   });
 
   const handleLogin = () => {
-    localStorage.setItem("login", formik.values.email);
+    localStorage.setItem("login", formik.values.email); // redux-email here
     navigate(Redirect.dashboard);
   };
 
   //secure routes?
   useEffect(() => {
-    localStorage.getItem("login") && navigate(Redirect.dashboard);
+    localStorage.getItem("login") && navigate(Redirect.dashboard); //redux-email here
   });
 
   const classes = classNames({

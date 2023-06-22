@@ -12,7 +12,8 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard__header">
-        <p className="dashboard__email">{localStorage.getItem("login")}</p>
+        <p className="dashboard__email">{localStorage.getItem("login")}</p>{" "}
+        {/**/}
         <button className="dashboardBtn dashboard__exit-btn" onClick={Click}>
           Log out
         </button>
