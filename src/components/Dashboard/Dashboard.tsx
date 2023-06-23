@@ -2,7 +2,8 @@ import { useNavigate } from "react-router-dom";
 import Redirect from "components/utils/routes";
 import "components/Dashboard/_dashboard.scss";
 import { useSelector, useDispatch } from "react-redux";
-import { deleteLogin } from "src/app/features/inputReducer";
+import { deleteLogin } from "app/features/inputReducer";
+import type { RootState } from "app/store";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ const Dashboard = () => {
   return (
     <div className="dashboard">
       <div className="dashboard__header">
-        <p className="dashboard__email">{email}</p> {/**/}
+        <p className="dashboard__email">{email}</p>
         <button className="dashboardBtn dashboard__exit-btn" onClick={Click}>
           Log out
         </button>

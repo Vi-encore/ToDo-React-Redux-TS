@@ -3,9 +3,9 @@ import { useFormik } from "formik";
 import { object, string } from "yup";
 import Redirect from "components/utils/routes";
 import "components/LoginPage/_login.scss";
-import { forwardRef, useCallback, useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setLogin } from "src/app/features/inputReducer";
+import { setLogin } from "app/features/inputReducer";
 import classNames from "classnames";
 
 const LoginPage = () => {
@@ -38,7 +38,6 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     dispatch(setLogin(formik.values.email));
-
     navigate(Redirect.dashboard);
   };
 
