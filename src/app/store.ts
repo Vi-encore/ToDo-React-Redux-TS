@@ -1,14 +1,16 @@
-// import { configureStore } from "@reduxjs/toolkit";
-// import inputReducer from "src/app/features/inputReducer";
+import { configureStore } from "@reduxjs/toolkit";
+import { counterSlice } from "src/app/features/inputReducer";
+import counterReducer from "src/app/features/inputReducer";
 
-// const store = configureStore({
-//   reducer: {
-//     input: inputReducer,
-//   },
-// });
+const store = configureStore({
+  //type??
+  reducer: {
+    email: counterReducer,
+  },
+});
 
-// export default store;
-// // Infer the `RootState` and `AppDispatch` types from the store itself
-// export type RootState = ReturnType<typeof store.getState>;
-// // Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
-// export type AppDispatch = typeof store.dispatch;
+export default store;
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+// Inferred type: {posts: PostsState, comments: CommentsState, users: UsersState}
+export type AppDispatch = typeof store.dispatch;

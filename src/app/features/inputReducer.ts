@@ -1,51 +1,30 @@
-// import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
-// const inputReducer = createSlice({
-//   name: "input",
-//   initialState: "",
-//   reducers: {
-//     setInputValue: (state, action) => {
-//       return action.payload;
-//     },
-//   },
-// });
-
-// export const { setInputValue } = inputReducer.actions;
-// export default inputReducer.reducer;
-
-const LOG_ME_IN = "LOG_ME_IN";
-const LOG_ME_OUT = "LOG_ME_OUT";
-
-function logIn() {
-  return {
-    type: LOG_ME_IN,
-  };
+export interface CounterState {
+  value: string;
 }
 
-function logOut() {
-  return {
-    type: LOG_ME_OUT,
-  };
-}
-
-const initState = {
-  isLoggedIn: false,
-  email: "",
+const initialState: CounterState = {
+  value: "",
 };
 
-const reducer = (state = initState, action: any) => {
-  switch (action.type) {
-    case LOG_ME_IN:
-      return {
-        ...state,
-        isLoggedIn: (state.isLoggedIn = true),
-      };
-    case LOG_ME_OUT:
-      return {
-        ...state,
-        isLoggedIn: (state.isLoggedIn = false),
-      };
-    default:
-      return state;
-  }
-};
+export const counterSlice = createSlice({
+  name: "email",
+  initialState,
+  reducers: {
+    setLogin: (state, action: PayloadAction<string>) => {
+      state.value = action.payload;
+      localStorage.setItem("login", state.value); //what type?
+    },
+    deleteLogin: (state) => {
+      state.value = "";
+      localStorage.clear();
+    },
+  },
+});
+
+// Action creators are generated for each case reducer function
+export const { setLogin, deleteLogin } = counterSlice.actions;
+
+export default counterSlice.reducer;
