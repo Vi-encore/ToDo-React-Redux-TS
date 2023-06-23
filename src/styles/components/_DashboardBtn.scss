@@ -41,3 +41,24 @@
     color: $disabled-btn-text-color;
   }
 }
+
+@media screen and (max-width: 946px) {
+  .dashboardCardBtn {
+    padding: 10px 20px;
+  }
+}
+
+@media screen and (max-width: 790px) {
+  .dashboardCardBtn {
+    padding: 10px 18px;
+  }
+}
+
+@media screen and (max-width: $mob) {
+  .dashboardBtn {
+    padding: 15px 50px;
+  }
+  .dashboardCardBtn {
+    padding: 18px 30px;
+  }
+}
