@@ -38,6 +38,7 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     dispatch(setLogin(formik.values.email));
+
     navigate(Redirect.dashboard);
   };
 
