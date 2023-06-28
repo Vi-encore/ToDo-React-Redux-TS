@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate, Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RootState } from "app/store";
 import appRoutes from "components/utils/routes";
 
