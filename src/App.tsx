@@ -1,17 +1,25 @@
 import { Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
 import LoginPage from "components/LoginPage/LoginPage";
 import Dashboard from "components/Dashboard/Dashboard";
-import Redirect from "components/utils/routes";
-import store from "src/app/store";
-import { Provider } from "react-redux";
+import CheckLogin from "components/CheckLogin/CheckLogin";
+import appRoutes from "components/utils/routes";
+import store from "app/store";
 
 const App = () => {
   return (
     <div className="App">
       <Provider store={store}>
         <Routes>
-          <Route path={Redirect.login} element={<LoginPage />} />
-          <Route path={Redirect.dashboard} element={<Dashboard />} />
+          <Route
+            path={appRoutes.login}
+            element={
+              <CheckLogin>
+                <LoginPage />
+              </CheckLogin>
+            }
+          />
+          <Route path={appRoutes.dashboard} element={<Dashboard />} />
         </Routes>
       </Provider>
     </div>

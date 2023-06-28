@@ -1,17 +1,18 @@
+import { useCallback, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { object, string } from "yup";
-import Redirect from "components/utils/routes";
-import "components/LoginPage/_login.scss";
-import { useCallback, useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { setLogin } from "app/features/inputReducer";
 import classNames from "classnames";
+import appRoutes from "components/utils/routes";
+import { setLogin } from "app/features/inputReducer";
+// import { RootState } from "app/store";
+import "components/LoginPage/_login.scss";
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  // const inputValue = useSelector((state: any) => state.input);
+  // const inputValue = useSelector((state: RootState) => state.email.value); //
   const dispatch = useDispatch();
 
   const validationScheme = object({
@@ -38,12 +39,12 @@ const LoginPage = () => {
 
   const handleLogin = () => {
     dispatch(setLogin(formik.values.email));
-    navigate(Redirect.dashboard);
+    navigate(appRoutes.dashboard);
   };
 
   //secure routes?
   useEffect(() => {
-    localStorage.getItem("login") && navigate(Redirect.dashboard); //redux-email here ?
+    localStorage.getItem("login") && navigate(appRoutes.dashboard); //redux-email here ?
   });
 
   const classes = classNames({
@@ -74,7 +75,11 @@ const LoginPage = () => {
       <div className="loginPage__box">
         <h1 className="loginPage__header">Login form</h1>
 
-        <form className="loginPage__form" onSubmit={submitHandler}>
+        <form
+          className="loginPage__form"
+          onSubmit={submitHandler}
+          // onSubmit={formik.handleSubmit}
+        >
           <label htmlFor="email" className="loginPage__label">
             Email
           </label>
@@ -82,6 +87,7 @@ const LoginPage = () => {
             name="email"
             type={"text"}
             onChange={changeHandler}
+            // onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
             className={classes}

@@ -7,7 +7,7 @@ export interface CounterState {
 }
 
 const initialState: CounterState = {
-  value: "",
+  value: localStorage.getItem("login") || "",
 };
 
 export const counterSlice = createSlice({
@@ -16,7 +16,7 @@ export const counterSlice = createSlice({
   reducers: {
     setLogin: (state, action: PayloadAction<string>) => {
       state.value = action.payload;
-      localStorage.setItem("login", state.value); //what type?
+      localStorage.setItem("login", state.value);
     },
     deleteLogin: (state) => {
       state.value = "";

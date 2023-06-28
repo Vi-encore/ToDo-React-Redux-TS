@@ -1,25 +1,24 @@
 import { useNavigate } from "react-router-dom";
-import Redirect from "components/utils/routes";
-import "components/Dashboard/_dashboard.scss";
 import { useSelector, useDispatch } from "react-redux";
+import appRoutes from "components/utils/routes";
 import { deleteLogin } from "app/features/inputReducer";
 import type { RootState } from "app/store";
+import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const email = useSelector((state: RootState) => state.email.value);
-  const Click = () => {
+  const logOut = () => {
     dispatch(deleteLogin());
-    // localStorage.clear();
-    navigate(Redirect.login);
+    navigate(appRoutes.login);
   };
 
   return (
     <div className="dashboard">
       <div className="dashboard__header">
         <p className="dashboard__email">{email}</p>
-        <button className="dashboardBtn dashboard__exit-btn" onClick={Click}>
+        <button className="dashboardBtn dashboard__exit-btn" onClick={logOut}>
           Log out
         </button>
       </div>
