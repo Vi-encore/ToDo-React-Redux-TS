@@ -1,22 +1,21 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { RootState } from "app/store";
 import appRoutes from "components/utils/routes";
 
 const CheckLogin: FC<PropsWithChildren> = ({ children }) => {
   const email = useSelector((state: RootState) => state.email.value);
+
   const navigate = useNavigate();
 
-  if (!email) navigate(appRoutes.login);
+  function checkNavigate() {
+    if (email === "") navigate(appRoutes.login);
+  }
 
-  console.log(email === "");
-
-  //   if (!email) {
-  //     useEffect(() => {
-  //       navigate(Redirect.login);
-  //     });
-  //   }
+  useEffect(() => {
+    checkNavigate();
+  });
 
   return children;
 };

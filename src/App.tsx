@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
 import LoginPage from "components/LoginPage/LoginPage";
 import Dashboard from "components/Dashboard/Dashboard";
@@ -11,15 +11,17 @@ const App = () => {
     <div className="App">
       <Provider store={store}>
         <Routes>
+          <Route path={appRoutes.login} element={<LoginPage />} />
+
           <Route
-            path={appRoutes.login}
+            path={appRoutes.dashboard}
             element={
               <CheckLogin>
-                <LoginPage />
+                <Dashboard />
               </CheckLogin>
             }
           />
-          <Route path={appRoutes.dashboard} element={<Dashboard />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Provider>
     </div>
