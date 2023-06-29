@@ -6,7 +6,6 @@ import appRoutes from "components/utils/routes";
 
 const CheckLogin: FC<PropsWithChildren> = ({ children }) => {
   const email = useSelector((state: RootState) => state.email.value);
-
   const navigate = useNavigate();
 
   function checkNavigate() {

@@ -1,0 +1,23 @@
+@import "src/styles/index";
+
+.modal__create-btn {
+  padding: 18px 30px;
+  margin-left: 15px;
+  @include btn-sec($main-btn-bg-color);
+  @include btn-text;
+  border: none;
+  @include transition;
+
+  &:hover {
+    background-color: $main-btn-hover-bg;
+  }
+
+  &:active {
+    background-color: $main-btn-active-bg;
+  }
+
+  &:disabled {
+    background-color: $disabled-btn-bg-color;
+    color: $disabled-btn-text-color;
+  }
+}
