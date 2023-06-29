@@ -6,12 +6,8 @@ const CreateModalBtn: FC<PropsWithChildren> = ({
   setModalOpen,
   input,
 }) => {
-  const createCardApi = () => {
-    setModalOpen(false);
-  };
-
   return (
-    <button className="modal__create-btn" onClick={() => createCardApi()}>
+    <button className="modal__create-btn" type="submit">
       {children}
     </button>
   );
