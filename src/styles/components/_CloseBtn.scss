@@ -1,0 +1,23 @@
+@import "src/styles/index";
+
+.modal__close-btn {
+  padding: 18px 30px;
+
+  @include btn-sec($white);
+  @include btn-text;
+  @include border(0.5px, #9d9d9d);
+  @include transition;
+
+  &:hover {
+    background-color: $secondary-btn-hover-bg;
+  }
+
+  &:active {
+    background-color: $secondary-btn-active-bg;
+  }
+
+  &:disabled {
+    background-color: $disabled-btn-bg-color;
+    color: $disabled-btn-text-color;
+  }
+}

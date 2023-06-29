@@ -5,7 +5,7 @@ import type { RootState } from "app/store";
 import CreateBtn from "components/Buttons/CreateBtn";
 import LogOut from "components/Buttons/LogOutBtn";
 import ToDoList from "components/ToDoList/ToDoList";
-import CreateEditModal from "components/Modals/EditModal";
+// import CreateEditModal from "components/Modals/EditModal";
 import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {

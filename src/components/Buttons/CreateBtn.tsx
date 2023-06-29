@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import CreateModal from "components/Modals/EditModal";
+import CreateModal from "components/Modals/CreateModal";
 
 const CreateBtn: FC<PropsWithChildren> = ({ children }) => {
   return (
@@ -12,6 +12,7 @@ const CreateBtn: FC<PropsWithChildren> = ({ children }) => {
       >
         {children}
       </button>
+
       <CreateModal>Create</CreateModal>
     </>
   );
