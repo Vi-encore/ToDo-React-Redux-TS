@@ -21,7 +21,6 @@ const ToDoList = () => {
     <div className="dashboard__cards">
       <Card>Card title</Card>
       <Card>Card title</Card>
-      <Card>Card title</Card>
       {/* </div> */}
     </div>
   );

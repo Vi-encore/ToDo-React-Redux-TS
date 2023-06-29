@@ -24,7 +24,9 @@
   }
 
   &__cards {
-    @include flex-between;
+    // @include flex-between;
+    display: flex;
+    justify-content: start;
     flex-wrap: wrap;
     padding-top: 35px;
 
@@ -51,6 +53,7 @@
       width: 30%;
       background-color: $card-bg-color;
       padding-top: 20px;
+      margin: 0 1%;
       border-radius: $r-sm;
 
       &-textarea {
