@@ -11,12 +11,7 @@ const CreateModalBtn: FC<PropsWithChildren> = ({
   };
 
   return (
-    <button
-      className="modal__create-btn"
-      onClick={() => {
-        createCardApi();
-      }}
-    >
+    <button className="modal__create-btn" onClick={() => createCardApi()}>
       {children}
     </button>
   );

@@ -29,9 +29,7 @@ const CreateModal: FC<PropsWithChildren> = ({
           <div className="create__container">
             <div
               className="create__exit--fixed"
-              onClick={() => {
-                setModalOpen(false);
-              }}
+              onClick={() => setModalOpen(false)}
               role="button"
             />
             <h2 className="create__header">{children} card</h2>
