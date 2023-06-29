@@ -1,5 +1,5 @@
 import { FC, PropsWithChildren } from "react";
-import { useFormik } from "formik";
+// import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import "components/Modals/_createModal.scss";
@@ -10,34 +10,35 @@ const CreateModal: FC<PropsWithChildren> = ({
   modalOpen,
   setModalOpen, //???
 }) => {
-  const formik = useFormik({
-    initialValues: {
-      input: "",
-    },
-    validationSchema: string(),
-    validateOnChange: false,
-    validateOnBlur: false,
-    onSubmit: () => {
-      console.log(input);
-    },
-  });
+  // const formik = useFormik({
+  //   initialValues: {
+  //     input: "",
+  //   },
+  //   validationSchema: string(),
+  //   validateOnChange: false,
+  //   validateOnBlur: false,
+  //   onSubmit: () => {
+  //     console.log(input);
+  //   },
+  // });
 
   return (
     <>
       {modalOpen && (
         <div className="create">
           <div className="create__container">
-            <button
+            <div
               className="create__exit--fixed"
               onClick={() => {
                 setModalOpen(false);
               }}
+              role="button"
             />
             <h2 className="create__header">{children} card</h2>
             <div className="create__type--section">
               <form
                 className="create__type--form"
-                onSubmit={formik.handleSubmit()}
+                // onSubmit={formik.handleSubmit()}
               >
                 <label htmlFor="create__title" className="create__type--label">
                   Title

@@ -7,8 +7,6 @@ const CreateModalBtn: FC<PropsWithChildren> = ({
   input,
 }) => {
   const createCardApi = () => {
-    console.log(input);
-
     setModalOpen(false);
   };
 
