@@ -1,14 +1,18 @@
 import { FC, PropsWithChildren, useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
+import { createToDo } from "slices/todoSlices";
 import "components/Modals/_createModal.scss";
 
-const CreateModal: FC<PropsWithChildren> = ({
+const CreateModal: FC<any> = ({
   children,
   modalOpen, //???
   setModalOpen, //???
 }) => {
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -20,6 +24,7 @@ const CreateModal: FC<PropsWithChildren> = ({
       // console.log(formik.values.title);
       // console.log(formik.values.description);
       setModalOpen(false);
+      dispatch(createToDo(formik.values));
       formik.values.title = "";
       formik.values.description = "";
     },

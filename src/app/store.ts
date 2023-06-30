@@ -1,10 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import counterReducer from "app/features/inputReducer";
+import todoReducer from "slices/todoSlices";
 
 const store = configureStore({
   //type??
   reducer: {
     email: counterReducer,
+    todo: todoReducer,
     //todo reducer
   },
 });
