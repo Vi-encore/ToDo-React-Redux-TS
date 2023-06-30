@@ -1,7 +1,8 @@
-import { createSlice } from "@reduxjs/toolkit";
-import store from "app/store";
-// import { counterSlice } from "app/features/inputReducer";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+
+// import { counterSlice } from "app/features/inputReducer";
+import ToDoService from "axios/ToDoService";
 import ToDoList from "components/ToDoList/ToDoList";
 
 type ToDoState = {
@@ -9,14 +10,7 @@ type ToDoState = {
   description: string;
 };
 
-//create type!!
-//getInitToDos => fetch
-
-// }
-
-const initValue: any = {
-  //   toDoList: getInitToDos(localStorage.getItem("email")),
-  //   email: getInitToDos(localStorage.getItem("email")),
+const initValue: ToDoState = {
   title: "",
   description: "",
 };
@@ -26,8 +20,6 @@ export const toDoSlice = createSlice({
   initialState: initValue,
   reducers: {
     createToDo: (state, action: PayloadAction<ToDoState>) => {
-      //   getInitToDos();
-
       state.title = action.payload.title;
       state.description = action.payload.description;
       console.log(action.payload);
