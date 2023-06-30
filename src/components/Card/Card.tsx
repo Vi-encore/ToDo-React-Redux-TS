@@ -3,11 +3,11 @@ import EditBtn from "components/Buttons/EditBtn";
 import DeleteBtn from "components/Buttons/DeleteBtn";
 
 const Card = (children: any) => {
-  const { title, description } = children;
+  const { title, description, id } = children;
 
   // in p => {description}; in h2 => {title}
   return (
-    <div className="dashboard__cards-card">
+    <div className="dashboard__cards-card" key={id}>
       <div className="dashboard__cards-card-textarea">
         <h2 className="dashboard__cards-card-textarea--title">{title}</h2>
         <div className="dashboard__cards-card-textarea--wrap">

@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
-import { createToDo } from "slices/todoSlices";
+// import { createToDo } from "slices/todoSlices";
 import "components/Modals/_createModal.scss";
 
 const CreateModal: FC<any> = ({
@@ -24,7 +24,7 @@ const CreateModal: FC<any> = ({
       // console.log(formik.values.title);
       // console.log(formik.values.description);
       setModalOpen(false);
-      dispatch(createToDo(formik.values));
+      // dispatch(createToDo(formik.values)); ////
       formik.values.title = "";
       formik.values.description = "";
     },

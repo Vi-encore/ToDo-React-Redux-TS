@@ -1,10 +1,45 @@
 // import { isFulfilled } from "@reduxjs/toolkit";
-
+import axios from "axios"; //not importing axios??
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  getAllToDos,
+  getLoading,
+  allToDosLoad,
+  allToDosReceived,
+} from "slices/todoSlices";
 import Card from "components/Card/Card";
 
-const ToDoList = (resp: any, email: string) => {
+// const ToDoList = (resp: any, email: string) => {
+const ToDoList: any = (email: string) => {
+  const allToDos = useSelector(getAllToDos);
+  const apiStatus = useSelector(getLoading);
+  const dispatch = useDispatch();
+  let contentToRender: any = "";
+
+  useEffect(() => {
+    const invokeAllToDosAPI = async () => {
+      dispatch(allToDosLoad());
+      const apiRes = await axios.get(
+        `https://l.study-link-demo.com/cards/:${email}`
+      );
+      dispatch(allToDosReceived(apiRes.data));
+    };
+
+    invokeAllToDosAPI();
+  }, [dispatch, email]);
   // console.log(Object.keys(resp).length);
 
+  contentToRender =
+    apiStatus === "pending" ? (
+      <div>Loading</div>
+    ) : (
+      <div className="dashboard__cards">
+        {allToDos.map((item: any) => Card(item))}
+      </div>
+    );
+
+  return <div className="dashboard__cards">{contentToRender}</div>;
   // const test = [
   //   {
   //     id: 1,
@@ -39,20 +74,12 @@ const ToDoList = (resp: any, email: string) => {
   // return (<div className="dashboard__cards">{list}</div>)
   //  }
 
-  if (Object.keys(resp).length === 0) {
-    return <div className="dashboard__cards">No items found</div>;
-  } else {
-    const list = Object.keys(resp).map((item: any) => Card(item));
-    return <div className="dashboard__cards">{list}</div>;
-  }
-
-  // return (
-  //   <div className="dashboard__cards">
-  //     {/* {list} */}
-  //     <Card>Card title</Card>
-  //     <Card>Card title</Card>
-  //   </div>
-  // );
+  // if (Object.keys(resp).length === 0) {
+  //   return <div className="dashboard__cards">No items found</div>;
+  // } else {
+  //   const list = Object.keys(resp).map((item: any) => Card(item));
+  //   return <div className="dashboard__cards">{list}</div>;
+  // } !!!!!!!!!!!!!!!!!!!
 };
 
 export default ToDoList;

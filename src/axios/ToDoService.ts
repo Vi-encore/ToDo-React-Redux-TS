@@ -1,10 +1,10 @@
 import https from "axios/http-common";
 
-const getAllToDos = (email: string) => {
+const getAllCards = (email: string) => {
   return https.get(`/cards/:${email}`);
 };
 
-const createToDo = (data: any) => {
+const createCard = (data: any) => {
   return https.post("/cards", data);
 };
 
@@ -12,15 +12,15 @@ const editCard = (id: number, data: any) => {
   return https.put(`/cards/:${id}`, data);
 };
 
-const deleteToDo = (id: number) => {
+const deleteCard = (id: number) => {
   return https.delete(`/cards/:${id}`);
 };
 
 const ToDoService = {
-  getAllToDos,
-  createToDo,
+  getAllCards,
+  createCard,
   editCard,
-  deleteToDo,
+  deleteCard,
 };
 
 export default ToDoService;

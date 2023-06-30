@@ -6,7 +6,7 @@ async function getInitToDos(email: string) {
   await fetch(url)
     .then((res) => res.json())
     .then((res) => {
-      ToDoList(res, email); //??
+      // ToDoList(res, email); //??
     });
   // getAllToDos(email)
   //   .then((res: any) => res.json())
