@@ -10,6 +10,7 @@ export default defineConfig({
       components: "/src/components",
       app: "/src/app",
       slices: "/src/slices",
+      fetches: "/src/fetches",
     },
   },
 });

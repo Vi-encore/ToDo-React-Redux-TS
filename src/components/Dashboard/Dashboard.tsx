@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
-// import { useQuery } from "@tanstack/react-query"; //
-
 import type { RootState } from "app/store";
 import CreateBtn from "components/Buttons/CreateBtn";
 import LogOut from "components/Buttons/LogOutBtn";
 import ToDoList from "components/ToDoList/ToDoList";
+import getInitToDos from "fetches/getInitToDos";
 // import CreateEditModal from "components/Modals/EditModal";
 import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {
   const email = useSelector((state: RootState) => state.email.value);
+  getInitToDos(email);
 
   return (
     <div className="dashboard">
