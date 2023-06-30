@@ -3,6 +3,8 @@ import EditBtn from "components/Buttons/EditBtn";
 import DeleteBtn from "components/Buttons/DeleteBtn";
 
 const Card: FC<PropsWithChildren> = ({ children }) => {
+  //const {title, description} = children => destruction
+  //in p => {description}; in h2 => {title}
   return (
     <div className="dashboard__cards-card">
       <div className="dashboard__cards-card-textarea">

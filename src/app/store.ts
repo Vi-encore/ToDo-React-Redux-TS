@@ -5,6 +5,7 @@ const store = configureStore({
   //type??
   reducer: {
     email: counterReducer,
+    //todo reducer
   },
 });
 

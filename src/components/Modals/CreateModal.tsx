@@ -6,7 +6,7 @@ import "components/Modals/_createModal.scss";
 
 const CreateModal: FC<PropsWithChildren> = ({
   children,
-  modalOpen,
+  modalOpen, //???
   setModalOpen, //???
 }) => {
   const formik = useFormik({
