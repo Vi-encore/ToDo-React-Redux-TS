@@ -1,22 +1,32 @@
 import { createSlice } from "@reduxjs/toolkit";
+// import { counterSlice } from "app/features/inputReducer";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import ToDoList from "components/ToDoList/ToDoList";
 
-export interface CounterState {
-  value: string;
-}
+type ToDoState = {
+  title: string;
+  description: string;
+};
 
+//create type!!
 //getInitToDos => fetch
 
-async function getInitToDos(email: any) {
+async function getInitToDos() {
+  const email = localStorage.getItem("email");
+
   const url = `https://l.study-link-demo.com/cards/:${email}`;
-  const toDoList = await fetch(url)
+  await fetch(url)
     .then((res) => res.json())
     .then((res) => {
-      if (res.length === 0) {
-        console.log("there are no toDos");
-      } else {
-        console.log(res);
-        //give res to component(toDoList) to mao through it (give all data to card comp)
-      }
+      //   if (res.length === 0) {
+      //     console.log("there are no toDos");
+      //     //comp with no  todos found
+      //   } else {
+      //     console.log(res);
+
+      ToDoList(res); //??
+      //give res to component(toDoList) to map through it (give  all data to card comp)
+      //   }
     });
 }
 
@@ -24,6 +34,27 @@ async function getInitToDos(email: any) {
 
 // }
 
-const initValue = {
-  toDoList: getInitToDos(localStorage.getItem("email")),
+const initValue: any = {
+  //   toDoList: getInitToDos(localStorage.getItem("email")),
+  //   email: getInitToDos(localStorage.getItem("email")),
+  title: "",
+  description: "",
 };
+
+export const toDoSlice = createSlice({
+  name: "todo",
+  initialState: initValue,
+  reducers: {
+    createToDo: (state, action: PayloadAction<ToDoState>) => {
+      getInitToDos();
+      state.title = action.payload.title;
+      state.description = action.payload.description;
+      console.log(action.payload);
+    },
+    // editToDo
+    // deleteToDo
+  },
+});
+
+export const { createToDo } = toDoSlice.actions;
+export default toDoSlice.reducer;
