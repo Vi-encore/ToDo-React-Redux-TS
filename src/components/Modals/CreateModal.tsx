@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import "components/Modals/_createModal.scss";
-import { string } from "yup";
 
 const CreateModal: FC<PropsWithChildren> = ({
   children,
@@ -18,20 +17,13 @@ const CreateModal: FC<PropsWithChildren> = ({
     validateOnChange: true,
     validateOnBlur: true,
     onSubmit: () => {
-      console.log(formik.values.title);
+      // console.log(formik.values.title);
+      // console.log(formik.values.description);
+      setModalOpen(false);
+      formik.values.title = "";
+      formik.values.description = "";
     },
   });
-
-  // const handleSubmit = () => {
-  //   formik.handleSubmit();
-  //   console.log(formik.values.title);
-  // };
-
-  const handleSubmit = useCallback(() => {
-    formik.handleSubmit();
-    console.log(formik.values.title);
-    console.log(formik.values.description);
-  }, [formik]);
 
   return (
     modalOpen && (
@@ -44,7 +36,7 @@ const CreateModal: FC<PropsWithChildren> = ({
           />
           <h2 className="create__header">{children} card</h2>
           <div className="create__type--section">
-            <form className="create__type--form" onSubmit={handleSubmit}>
+            <form className="create__type--form" onSubmit={formik.handleSubmit}>
               <label htmlFor="create__title" className="create__type--label">
                 Title
               </label>
