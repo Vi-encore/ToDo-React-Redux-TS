@@ -1,8 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 // import { counterSlice } from "app/features/inputReducer";
-import ToDoService from "axios/ToDoService";
-import ToDoList from "components/ToDoList/ToDoList";
+// import ToDoService from "axios/ToDoService";
+// import ToDoList from "components/ToDoList/ToDoList";
 
 type ToDoState = {
   title: string;
@@ -56,7 +56,7 @@ export const toDoSlice = createSlice({
 
 export const { allToDosLoad, allToDosReceived } = toDoSlice.actions;
 
-export const getAllToDos = (state: any) => state.todos.toDoData;
-export const getLoading = (state: any) => state.todos.loading;
+export const getAllToDos = (state: any) => state.todo.todoData;
+export const getLoading = (state: any) => state.todo.loading;
 
 export default toDoSlice.reducer;
