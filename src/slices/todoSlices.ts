@@ -36,7 +36,7 @@ export const toDoSlice = createSlice({
     },
     allToDosReceived: (state, { payload }) => {
       state.loading = "idle";
-      state.ToDosData = payload;
+      state.ToDoData = payload;
     },
     // createToDo: (state, action: PayloadAction<ToDoState>) => {
     //   state.title = action.payload.title;

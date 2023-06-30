@@ -9,6 +9,7 @@ import {
   allToDosReceived,
 } from "slices/todoSlices";
 import Card from "components/Card/Card";
+import getInitToDos from "fetches/getInitToDos";
 
 // const ToDoList = (resp: any, email: string) => {
 const ToDoList: any = (email: string) => {
@@ -33,6 +34,8 @@ const ToDoList: any = (email: string) => {
   contentToRender =
     apiStatus === "pending" ? (
       <div>Loading</div>
+    ) : Object.keys(allToDos).length === 0 ? (
+      <div className="dashboard__cards">No Data Found</div>
     ) : (
       <div className="dashboard__cards">
         {allToDos.map((item: any) => Card(item))}
