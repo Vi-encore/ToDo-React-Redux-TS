@@ -2,8 +2,11 @@ import { FC, PropsWithChildren } from "react";
 import EditBtn from "components/Buttons/EditBtn";
 import DeleteBtn from "components/Buttons/DeleteBtn";
 
-const Card = (children: any) => {
+const Card: FC = (children: any) => {
   const { title, description, id } = children;
+  // console.log();
+
+  // const { title, body, id } = children;
 
   // in p => {description}; in h2 => {title}
   return (

@@ -11,7 +11,7 @@ export default defineConfig({
       app: "/src/app",
       slices: "/src/slices",
       fetches: "/src/fetches",
-      axios: "/src/axios",
+      types: "/src/types",
     },
   },
 });

@@ -1,13 +1,13 @@
 export type INote = {
   id: string;
   title: string;
-  content: string;
+  description: string;
   createdAt: Date;
   updatedAt: Date;
 };
 export type IMutateNote = {
   title: string;
-  content: string;
+  description: string;
 };
 
 export type IGenericResponse = {

@@ -7,6 +7,7 @@ import classNames from "classnames";
 import appRoutes from "components/utils/routes";
 import { setLogin } from "app/features/inputReducer";
 // import { RootState } from "app/store";
+import { getAllToDos } from "app/features/api/apiSlice";
 import "components/LoginPage/_login.scss";
 
 const LoginPage = () => {
@@ -14,6 +15,8 @@ const LoginPage = () => {
 
   // const inputValue = useSelector((state: RootState) => state.email.value); //
   const dispatch = useDispatch();
+
+  // getInitToDos(email);
 
   const validationScheme = object({
     email: string()

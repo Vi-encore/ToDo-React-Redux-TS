@@ -1,13 +1,16 @@
 import { configureStore } from "@reduxjs/toolkit";
+// import { setupListeners } from "@reduxjs/toolkit/query";
+// import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
+import todoReducer from "app/features/cardReducer";
 import counterReducer from "app/features/inputReducer";
-import todoReducer from "slices/todoSlices";
+
+// import todoReducer from "slices/todoSlices";
 
 const store = configureStore({
   //type??
   reducer: {
     email: counterReducer,
     todo: todoReducer,
-    //todo reducer
   },
 });
 
