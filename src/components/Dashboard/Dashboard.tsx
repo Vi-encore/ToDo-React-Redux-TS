@@ -1,15 +1,18 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+
 import type { RootState } from "app/store";
 import CreateBtn from "components/Buttons/CreateBtn";
 import LogOut from "components/Buttons/LogOutBtn";
 import ToDoList from "components/ToDoList/ToDoList";
-import getInitToDos from "fetches/getInitToDos";
-// import CreateEditModal from "components/Modals/EditModal";
+import { getAllToDos } from "app/features/api/apiSlice";
+
 import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {
   const email = useSelector((state: RootState) => state.email.value);
-  getInitToDos(email);
+  const dispatch = useDispatch();
+
+  dispatch(getAllToDos(email));
 
   return (
     <div className="dashboard">
