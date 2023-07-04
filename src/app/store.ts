@@ -1,8 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-// import { setupListeners } from "@reduxjs/toolkit/query";
-// import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import todoReducer from "app/features/cardReducer";
+
 import counterReducer from "app/features/inputReducer";
+import { apiSlice } from "app/features/api/apiSlice";
 
 // import todoReducer from "slices/todoSlices";
 
@@ -10,8 +9,10 @@ const store = configureStore({
   //type??
   reducer: {
     email: counterReducer,
-    todo: todoReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export default store;

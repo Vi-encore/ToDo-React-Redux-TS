@@ -5,14 +5,12 @@ import CreateBtn from "components/Buttons/CreateBtn";
 import LogOut from "components/Buttons/LogOutBtn";
 import ToDoList from "components/ToDoList/ToDoList";
 import { getAllToDos } from "app/features/api/apiSlice";
+import { useGetTodosQuery } from "app/features/api/apiSlice";
 
 import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {
   const email = useSelector((state: RootState) => state.email.value);
-  const dispatch = useDispatch();
-
-  dispatch(getAllToDos(email));
 
   return (
     <div className="dashboard">
@@ -24,7 +22,7 @@ const Dashboard = () => {
         <div className="dashboard__create-card-btn--wrap">
           <CreateBtn>Create Card</CreateBtn>
         </div>
-        {/* <div className="dashboard__cards--wrap">  */}
+
         <ToDoList />
       </div>
     </div>

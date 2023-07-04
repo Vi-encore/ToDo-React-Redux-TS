@@ -1,7 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import type { RootState } from "app/store";
-import ToDoList from "components/ToDoList/ToDoList";
 
 export const getAllToDos = createAsyncThunk("todo/getAllToDos", async () => {
   const email = useSelector((state: RootState) => state.email.value);
@@ -17,3 +16,19 @@ export const getAllToDos = createAsyncThunk("todo/getAllToDos", async () => {
     return error;
   }
 });
+
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+
+export const apiSlice = createApi({
+  reducerPath: "api",
+  baseQuery: fetchBaseQuery({
+    baseUrl: "https://l.study-link-demo.com/",
+  }),
+  endpoints: (builder) => ({
+    getTodos: builder.query({
+      query: (email) => `/cards/${email}`,
+    }),
+  }),
+});
+
+export const { useGetTodosQuery } = apiSlice;
