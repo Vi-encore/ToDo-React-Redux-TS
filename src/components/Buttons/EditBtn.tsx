@@ -1,9 +1,8 @@
 import { FC, PropsWithChildren, useState } from "react";
 import EditModal from "components/Modals/EditModal";
 
-const EditBtn: FC<any> = ({ children, title, description }) => {
+const EditBtn: FC<any> = ({ children, title, description, id }) => {
   const [modalEditOpen, setModalEditOpen] = useState(false);
-  // console.log(title);
 
   return (
     <>
@@ -21,6 +20,7 @@ const EditBtn: FC<any> = ({ children, title, description }) => {
         setModalEditOpen={setModalEditOpen}
         title={title}
         description={description}
+        id={id}
       >
         Edit
       </EditModal>

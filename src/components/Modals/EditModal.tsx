@@ -13,6 +13,7 @@ const EditModal: FC<any> = ({
   modalEditOpen,
   title,
   description,
+  id,
 }) => {
   const email = useSelector((state: RootState) => state.email.value);
   const [updateTodo] = useUpdateTodoMutation();
@@ -25,20 +26,16 @@ const EditModal: FC<any> = ({
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: () => {
-      // setModalEditOpen(false);
-      // console.log(formik.values.title);
+      // console.log(id);
 
       updateTodo({
-        // id: id,
+        id: id,
         title: formik.values.title,
         description: formik.values.description,
-        // author: email,
       });
+      setModalEditOpen(false);
     },
   });
-
-  // const titles = document.querySelector("form");
-  // console.log(formik.getFieldProps(titles).value.title);
 
   return (
     modalEditOpen && (
@@ -51,7 +48,7 @@ const EditModal: FC<any> = ({
           />
           <h2 className="edit__header">{children} card</h2>
           <div className="edit__type--section">
-            <form className="edit__type--form">
+            <form className="edit__type--form" onSubmit={formik.handleSubmit}>
               <label htmlFor="edit__title" className="edit__type--label">
                 Title
               </label>

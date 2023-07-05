@@ -20,7 +20,7 @@ const Card: FC = (children: any) => {
         </div>
       </div>
       <div className="dashboard__cards-card-btns">
-        <EditBtn title={title} description={description}>
+        <EditBtn title={title} description={description} id={id}>
           Edit
         </EditBtn>
         <DeleteBtn>Delete</DeleteBtn>
