@@ -46,7 +46,7 @@
     }
 
     &--input {
-      min-width: 560px;
+      width: 560px;
       height: 60px;
       margin: 9px 0 18px;
       @include border(1px, $secondary-btn-border-color);
@@ -74,4 +74,47 @@
 
 .disabled {
   background-color: $disabled-btn-bg-color;
+}
+
+@media screen and (max-width: 900px) {
+  .edit {
+    &__type {
+      &--form {
+        align-items: center;
+      }
+
+      &--label {
+        align-self: flex-start;
+      }
+      &--input {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mob) {
+  .edit {
+    &__container {
+      padding: 15px 30px;
+    }
+
+    &__header {
+      font-size: $fs-md;
+      margin-bottom: 15px;
+    }
+
+    &__type {
+      &--label {
+        font-size: $fs-sm;
+      }
+
+      &--input {
+        padding: 10px;
+        height: 45px;
+        font-size: $fs-sm;
+        margin-bottom: 10px;
+      }
+    }
+  }
 }
