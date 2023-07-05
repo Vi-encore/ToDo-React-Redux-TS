@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react"; //find corresponding type
+import { FC, PropsWithChildren, useEffect } from "react"; //find corresponding type
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
@@ -33,6 +33,14 @@ const CreateModal: FC<any> = ({
       formik.values.description = "";
     },
   });
+
+  useEffect(() => {
+    if (modalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [modalOpen]);
 
   return (
     modalOpen && (

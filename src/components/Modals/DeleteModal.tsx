@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react"; //type!!!
+import { FC, PropsWithChildren, useEffect } from "react"; //type!!!
 import { useFormik } from "formik";
 import { useDeleteTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
@@ -19,8 +19,17 @@ const DeleteModal: FC<any> = ({
     validateOnChange: false,
     onSubmit: () => {
       deleteTodo({ id });
+      setModalDeleteOpen(false);
     },
   });
+
+  useEffect(() => {
+    if (modalDeleteOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [modalDeleteOpen]);
 
   return (
     modalDeleteOpen && (

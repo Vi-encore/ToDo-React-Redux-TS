@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren } from "react"; //TYPE!!
+import { FC, PropsWithChildren, useEffect } from "react"; //TYPE!!
 import { useFormik } from "formik";
 import { useUpdateTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
@@ -31,6 +31,14 @@ const EditModal: FC<any> = ({
       setModalEditOpen(false);
     },
   });
+
+  useEffect(() => {
+    if (modalEditOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [modalEditOpen]);
 
   return (
     modalEditOpen && (
