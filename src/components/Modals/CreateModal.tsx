@@ -1,5 +1,5 @@
-import { FC, PropsWithChildren, useCallback } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { FC, PropsWithChildren } from "react"; //find corresponding type
+import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
@@ -12,7 +12,6 @@ const CreateModal: FC<any> = ({
   modalOpen, //???
   setModalOpen, //???
 }) => {
-  const dispatch = useDispatch();
   const [addToDo] = useAddTodoMutation();
   const email = useSelector((state: RootState) => state.email.value);
 
@@ -75,9 +74,7 @@ const CreateModal: FC<any> = ({
                 <CloseModalMainBtn setModalOpen={setModalOpen}>
                   Close
                 </CloseModalMainBtn>
-                <CreateModalBtn setModalOpen={setModalOpen}>
-                  Create
-                </CreateModalBtn>
+                <CreateModalBtn>Create</CreateModalBtn>
               </div>
             </form>
           </div>

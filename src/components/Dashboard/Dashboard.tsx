@@ -1,11 +1,8 @@
-import { useSelector, useDispatch } from "react-redux";
-
+import { useSelector } from "react-redux";
 import type { RootState } from "app/store";
 import CreateBtn from "components/Buttons/CreateBtn";
 import LogOut from "components/Buttons/LogOutBtn";
 import ToDoList from "components/ToDoList/ToDoList";
-import { getAllToDos } from "app/features/api/apiSlice";
-import { useGetTodosQuery } from "app/features/api/apiSlice";
 
 import "components/Dashboard/_dashboard.scss";
 

@@ -1,14 +1,16 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useState } from "react";
 import EditBtn from "components/Buttons/EditBtn";
 import DeleteBtn from "components/Buttons/DeleteBtn";
 
 const Card: FC = (children: any) => {
   const { title, description, id } = children;
+
   // console.log();
 
   // const { title, body, id } = children;
 
   // in p => {description}; in h2 => {title}
+
   return (
     <div className="dashboard__cards-card" key={id}>
       <div className="dashboard__cards-card-textarea">
@@ -18,8 +20,12 @@ const Card: FC = (children: any) => {
         </div>
       </div>
       <div className="dashboard__cards-card-btns">
-        <EditBtn>Edit</EditBtn>
-        <DeleteBtn>Delete</DeleteBtn>
+        <EditBtn title={title} description={description} id={id}>
+          Edit
+        </EditBtn>
+        <DeleteBtn title={title} id={id}>
+          Delete
+        </DeleteBtn>
       </div>
     </div>
   );

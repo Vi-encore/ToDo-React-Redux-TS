@@ -1,15 +1,30 @@
-import { FC, PropsWithChildren } from "react";
+import { FC, PropsWithChildren, useState } from "react";
+import EditModal from "components/Modals/EditModal";
 
-const EditBtn: FC<PropsWithChildren> = ({ children }) => {
+const EditBtn: FC<any> = ({ children, title, description, id }) => {
+  const [modalEditOpen, setModalEditOpen] = useState(false);
+
   return (
-    <button
-      className=" dashboardCardBtn dashboard__cards-card-btns--edit"
-      onClick={() => {
-        console.log("Edit btn");
-      }}
-    >
-      {children}
-    </button>
+    <>
+      <button
+        className=" dashboardCardBtn dashboard__cards-card-btns--edit"
+        onClick={() => {
+          setModalEditOpen(true);
+        }}
+      >
+        {children}
+      </button>
+
+      <EditModal
+        modalEditOpen={modalEditOpen}
+        setModalEditOpen={setModalEditOpen}
+        title={title}
+        description={description}
+        id={id}
+      >
+        Edit
+      </EditModal>
+    </>
   );
 };
 
