@@ -34,8 +34,8 @@ const EditModal: FC<any> = ({
 
   return (
     modalEditOpen && (
-      <div className="edit">
-        <div className="edit__container">
+      <div className="edit" onClick={() => setModalEditOpen(false)}>
+        <div className="edit__container" onClick={(e) => e.stopPropagation()}>
           <div
             className="edit__exit--fixed"
             onClick={() => setModalEditOpen(false)}
