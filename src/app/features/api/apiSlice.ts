@@ -53,7 +53,7 @@ export const apiSlice = createApi({
         method: "DELETE",
         body: id,
       }),
-      // invalidatesTags: ["Todos"],
+      invalidatesTags: ["Todos"],
     }),
   }),
 });
