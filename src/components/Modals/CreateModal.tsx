@@ -36,8 +36,8 @@ const CreateModal: FC<any> = ({
 
   return (
     modalOpen && (
-      <div className="create">
-        <div className="create__container">
+      <div className="create" onClick={() => setModalOpen(false)}>
+        <div className="create__container" onClick={(e) => e.stopPropagation()}>
           <div
             className="create__exit--fixed"
             onClick={() => setModalOpen(false)}
