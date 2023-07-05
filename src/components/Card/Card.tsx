@@ -23,7 +23,9 @@ const Card: FC = (children: any) => {
         <EditBtn title={title} description={description} id={id}>
           Edit
         </EditBtn>
-        <DeleteBtn>Delete</DeleteBtn>
+        <DeleteBtn title={title} id={id}>
+          Delete
+        </DeleteBtn>
       </div>
     </div>
   );

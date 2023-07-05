@@ -1,7 +1,5 @@
 import { FC, PropsWithChildren } from "react"; //TYPE!!
-import { useSelector } from "react-redux";
-import { useFormik, useField } from "formik";
-import { RootState } from "app/store";
+import { useFormik } from "formik";
 import { useUpdateTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
@@ -15,7 +13,6 @@ const EditModal: FC<any> = ({
   description,
   id,
 }) => {
-  const email = useSelector((state: RootState) => state.email.value);
   const [updateTodo] = useUpdateTodoMutation();
 
   const formik = useFormik({
@@ -26,8 +23,6 @@ const EditModal: FC<any> = ({
     validateOnBlur: true,
     validateOnChange: true,
     onSubmit: () => {
-      // console.log(id);
-
       updateTodo({
         id: id,
         title: formik.values.title,
@@ -74,11 +69,10 @@ const EditModal: FC<any> = ({
                 name="description"
               />
               <div className="edit__btn--section">
-                {/* <button className="edit__btn--close">Close</button> */}
                 <CloseModalMainBtn setModalOpen={setModalEditOpen}>
                   Close
                 </CloseModalMainBtn>
-                {/* <button className="edit__btn--save">Save</button> */}
+
                 <CreateModalBtn>Save</CreateModalBtn>
               </div>
             </form>
