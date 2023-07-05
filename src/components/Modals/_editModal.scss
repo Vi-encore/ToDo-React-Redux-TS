@@ -1,1 +1,77 @@
 @import "src/styles/index";
+
+.edit {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: $black-transp;
+
+  @include flex-center;
+
+  &__container {
+    background-color: $white;
+    padding: 30px 70px;
+    border: none;
+    border-radius: $r-lg;
+    position: relative;
+  }
+
+  &__exit--fixed {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    background-color: $active-close-btn-color;
+    border-radius: 50%;
+    border: none;
+  }
+
+  &__header {
+    margin: 0 0 30px 0;
+    @include modal-text;
+  }
+
+  &__type {
+    &--form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &--label {
+      @include text;
+      color: $side-popup-text;
+    }
+
+    &--input {
+      min-width: 560px;
+      height: 60px;
+      margin: 9px 0 18px;
+      @include border(1px, $secondary-btn-border-color);
+      border-radius: $r-sm;
+      @include text;
+      padding: 20px;
+
+      &:focus-visible {
+        outline: none;
+      }
+    }
+  }
+
+  &__btn--section {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    margin-top: 12px;
+  }
+}
+
+.none {
+  display: none;
+}
+
+.disabled {
+  background-color: $disabled-btn-bg-color;
+}
