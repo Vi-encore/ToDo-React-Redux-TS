@@ -1,11 +1,12 @@
-import { useSelector } from "react-redux";
-// import { useQuery } from "@tanstack/react-query"; //
+import { useSelector, useDispatch } from "react-redux";
 
 import type { RootState } from "app/store";
 import CreateBtn from "components/Buttons/CreateBtn";
 import LogOut from "components/Buttons/LogOutBtn";
 import ToDoList from "components/ToDoList/ToDoList";
-// import CreateEditModal from "components/Modals/EditModal";
+import { getAllToDos } from "app/features/api/apiSlice";
+import { useGetTodosQuery } from "app/features/api/apiSlice";
+
 import "components/Dashboard/_dashboard.scss";
 
 const Dashboard = () => {
@@ -21,7 +22,7 @@ const Dashboard = () => {
         <div className="dashboard__create-card-btn--wrap">
           <CreateBtn>Create Card</CreateBtn>
         </div>
-        {/* <div className="dashboard__cards--wrap">  */}
+
         <ToDoList />
       </div>
     </div>

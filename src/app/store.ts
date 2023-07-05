@@ -1,11 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
+
 import counterReducer from "app/features/inputReducer";
+import { apiSlice } from "app/features/api/apiSlice";
+
+// import todoReducer from "slices/todoSlices";
 
 const store = configureStore({
   //type??
   reducer: {
     email: counterReducer,
+    [apiSlice.reducerPath]: apiSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(apiSlice.middleware),
 });
 
 export default store;

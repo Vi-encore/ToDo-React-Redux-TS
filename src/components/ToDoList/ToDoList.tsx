@@ -1,29 +1,38 @@
-// import fetchList from "app/fetches/fetchList";
-// import { isFulfilled } from "@reduxjs/toolkit";
-
+import { useEffect } from "react";
+import { useSelector } from "react-redux/es/hooks/useSelector";
+import {
+  useGetTodosQuery,
+  useAddTodoMutation, //not here?
+  useUpdateTodoMutation, //maybe not here
+  useDeleteTodoMutation, //not heree?
+} from "app/features/api/apiSlice";
 import Card from "components/Card/Card";
+import { RootState } from "app/store";
 
 const ToDoList = () => {
-  // const result = fetchList("dasf");
-  // // console.log(result.then(Pr));
-  // const fulfilled = result.then(isFulfilled);
-
-  // if (!fulfilled) {
-  //   const fulfilled = result.then(isFulfilled);
-  //   return (
-  //     <>
-  //       <div>LOADING</div>
-  //     </>
-  //   );
-  // }
-
-  return (
-    <div className="dashboard__cards">
-      <Card>Card title</Card>
-      <Card>Card title</Card>
-      {/* </div> */}
-    </div>
+  const email = useSelector((state: RootState) => state.email.value);
+  const { data, error, isError, isLoading, isSuccess } = useGetTodosQuery(
+    `${email}`
   );
+
+  // const [updateTodo] = useUpdateTodoMutation();
+  // const [deleteTodo] = useDeleteTodoMutation();
+
+  let content = "";
+
+  if (isLoading) {
+    content = "loading .... "; //spinner
+  } else if (isSuccess) {
+    if (data.length === 0) {
+      content = `No todos found`;
+    } else {
+      content = data.map((item: object) => Card(item));
+    }
+  } else if (isError) {
+    content = `ERROR ${error}`;
+  }
+
+  return <div className="dashboard__cards">{content}</div>;
 };
 
 export default ToDoList;

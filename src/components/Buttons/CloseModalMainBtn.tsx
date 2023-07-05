@@ -8,10 +8,10 @@ const CloseModalMainBtn: FC<PropsWithChildren> = ({
   // const [modalOpen, setModalOpen] = useState(true);
   return (
     <button
+      type="button"
       className="modal__close-btn"
-      onClick={() => {
-        setModalOpen(false);
-      }}
+      onClick={() => setModalOpen(false)}
+      // onKeyDown={() => setModalOpen(false)}
     >
       {children}
     </button>
