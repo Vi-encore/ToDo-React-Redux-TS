@@ -24,8 +24,8 @@ const DeleteModal: FC<any> = ({
 
   return (
     modalDeleteOpen && (
-      <div className="delete">
-        <div className="delete__container">
+      <div className="delete" onClick={() => setModalDeleteOpen(false)}>
+        <div className="delete__container" onClick={(e) => e.stopPropagation()}>
           <div
             className="delete__exit--fixed"
             onClick={() => setModalDeleteOpen(false)}

@@ -6,8 +6,7 @@ import { object, string } from "yup";
 import classNames from "classnames";
 import appRoutes from "components/utils/routes";
 import { setLogin } from "app/features/inputReducer";
-// import { RootState } from "app/store";
-import { getAllToDos } from "app/features/api/apiSlice";
+
 import "components/LoginPage/_login.scss";
 
 const LoginPage = () => {
