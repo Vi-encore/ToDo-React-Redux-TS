@@ -24,20 +24,20 @@ const DeleteModal: FC<any> = ({
 
   return (
     modalDeleteOpen && (
-      <div className="edit">
-        <div className="edit__container">
+      <div className="delete">
+        <div className="delete__container">
           <div
-            className="edit__exit--fixed"
+            className="delete__exit--fixed"
             onClick={() => setModalDeleteOpen(false)}
             role="button"
           />
-          <h2 className="edit__header">{children} card</h2>
-          <div className="edit__type--section">
-            <form className="edit__type--form" onSubmit={formik.handleSubmit}>
-              <p className="edit__type--confirm">
+          <h2 className="delete__header">{children} card</h2>
+          <div className="delete__type--section">
+            <form className="delete__type--form" onSubmit={formik.handleSubmit}>
+              <p className="delete__type--confirm">
                 Are you sure you want to delete "{title}" card ?
               </p>
-              <div className="edit__btn--section">
+              <div className="delete__btn--section">
                 <CloseModalMainBtn setModalOpen={setModalDeleteOpen}>
                   Close
                 </CloseModalMainBtn>
