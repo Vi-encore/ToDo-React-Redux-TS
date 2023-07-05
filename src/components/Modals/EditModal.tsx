@@ -56,7 +56,7 @@ const EditModal: FC<any> = ({
                 value={formik.values.title}
                 name="title"
               />
-              <label htmlFor="edit__title" className="edit__type--descr">
+              <label htmlFor="edit__title" className="edit__type--label">
                 Description
               </label>
               <input

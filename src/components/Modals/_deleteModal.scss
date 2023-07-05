@@ -63,3 +63,33 @@
 .disabled {
   background-color: $disabled-btn-bg-color;
 }
+
+@media screen and (max-width: 900px) {
+  .delete {
+    &__container {
+      width: 90%;
+    }
+    &__type {
+      &--form {
+        align-items: center;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $mob) {
+  .delete {
+    &__container {
+      padding: 15px 30px;
+    }
+
+    &__header {
+      font-size: $fs-md;
+      margin-bottom: 15px;
+    }
+
+    &__type--confirm {
+      font-size: $fs-sm;
+    }
+  }
+}
