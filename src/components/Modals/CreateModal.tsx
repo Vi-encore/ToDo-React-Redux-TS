@@ -1,9 +1,11 @@
 import { FC, PropsWithChildren, useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useFormik } from "formik";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
+import { useAddTodoMutation } from "app/features/api/apiSlice";
 import "components/Modals/_createModal.scss";
+import { RootState } from "app/store";
 
 const CreateModal: FC<any> = ({
   children,
@@ -11,6 +13,8 @@ const CreateModal: FC<any> = ({
   setModalOpen, //???
 }) => {
   const dispatch = useDispatch();
+  const [addToDo] = useAddTodoMutation();
+  const email = useSelector((state: RootState) => state.email.value);
 
   const formik = useFormik({
     initialValues: {
@@ -20,6 +24,11 @@ const CreateModal: FC<any> = ({
     validateOnChange: true,
     validateOnBlur: true,
     onSubmit: () => {
+      addToDo({
+        title: formik.values.title,
+        description: formik.values.description,
+        author: email,
+      });
       setModalOpen(false);
       formik.values.title = "";
       formik.values.description = "";

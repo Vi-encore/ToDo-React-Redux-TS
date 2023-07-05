@@ -1,8 +1,13 @@
-// import { useDispatch } from "react-redux";
-import { RootState } from "app/store";
-import Card from "components/Card/Card";
+import { useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { useGetTodosQuery } from "app/features/api/apiSlice";
+import {
+  useGetTodosQuery,
+  useAddTodoMutation, //not here?
+  useUpdateTodoMutation, //maybe not here
+  useDeleteTodoMutation, //not heree?
+} from "app/features/api/apiSlice";
+import Card from "components/Card/Card";
+import { RootState } from "app/store";
 
 const ToDoList = () => {
   const email = useSelector((state: RootState) => state.email.value);
@@ -10,7 +15,11 @@ const ToDoList = () => {
     `${email}`
   );
 
+  // const [updateTodo] = useUpdateTodoMutation();
+  // const [deleteTodo] = useDeleteTodoMutation();
+
   let content = "";
+
   if (isLoading) {
     content = "loading .... "; //spinner
   } else if (isSuccess) {
