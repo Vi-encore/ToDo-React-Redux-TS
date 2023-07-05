@@ -21,3 +21,10 @@
     color: $disabled-btn-text-color;
   }
 }
+
+@media screen and (max-width: $mob) {
+  .modal__close-btn {
+    padding: 15px 30px;
+    font-size: $fs-sm;
+  }
+}
