@@ -28,7 +28,7 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getTodos: builder.query({
       query: (email) => `/cards/${email}`,
-      transformResponse: (res) => res.sort((a, b) => b.id - a.id), //to display newer cards first
+      transformResponse: (res) => res.sort((a, b) => b.id - a.id), //to display newer cards first //what type?
       providesTags: ["Todos"],
     }),
     addTodo: builder.mutation({
