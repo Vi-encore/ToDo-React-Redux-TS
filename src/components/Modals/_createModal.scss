@@ -76,7 +76,7 @@
     padding: 18px;
     border-radius: $r-sm;
     @include text;
-
+    margin-top: 9px;
     @include transition;
     @include border(1px, $error-text-color);
     background-color: $error-bg-color;
