@@ -1,5 +1,7 @@
-import { FC, PropsWithChildren, useEffect } from "react"; //TYPE!!
+import { FC, PropsWithChildren, useEffect, useCallback } from "react"; //TYPE!!
 import { useFormik } from "formik";
+import classNames from "classnames";
+import { string, object } from "yup";
 import { useUpdateTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
@@ -14,22 +16,38 @@ const EditModal: FC<any> = ({
   id,
 }) => {
   const [updateTodo] = useUpdateTodoMutation();
+  const validationSchema = object({
+    title: string().required(),
+    description: string().required(),
+  });
 
   const formik = useFormik({
     initialValues: {
       title: `${title}`,
       description: `${description}`,
     },
-    validateOnBlur: true,
-    validateOnChange: true,
+    validationSchema: validationSchema,
+    validateOnBlur: false,
+    validateOnChange: false,
     onSubmit: () => {
       updateTodo({
         id: id,
         title: formik.values.title,
         description: formik.values.description,
       });
+      formik.setStatus(false);
       setModalEditOpen(false);
     },
+  });
+
+  const classesTitle = classNames({
+    "edit__type--input": formik.values.title.length > 0,
+    "edit__type--input-error": formik.values.title.length === 0,
+  });
+
+  const classesDescr = classNames({
+    "edit__type--input": formik.values.description.length > 0,
+    "edit__type--input-error": formik.values.description.length === 0,
   });
 
   useEffect(() => {
@@ -40,9 +58,22 @@ const EditModal: FC<any> = ({
     }
   }, [modalEditOpen]);
 
+  const changeHandler = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      formik.handleChange(e);
+    },
+    [formik]
+  );
+
+  const closeModal = () => {
+    setModalEditOpen(false);
+    formik.values.title = `${title}`;
+    formik.values.description = `${description}`;
+  };
+
   return (
     modalEditOpen && (
-      <div className="edit" onClick={() => setModalEditOpen(false)}>
+      <div className="edit" onClick={closeModal}>
         <div className="edit__container" onClick={(e) => e.stopPropagation()}>
           <div
             className="edit__exit--fixed"
@@ -57,25 +88,35 @@ const EditModal: FC<any> = ({
               </label>
               <input
                 type="text"
-                className="edit__type--input"
+                className={classesTitle}
                 id="edit__title"
-                onChange={formik.handleChange}
+                onChange={changeHandler}
                 onBlur={formik.handleBlur}
                 value={formik.values.title}
                 name="title"
               />
-              <label htmlFor="edit__title" className="edit__type--label">
+              {formik.values.title.length === 0 ? (
+                <div className="error-msg">This is required field</div>
+              ) : (
+                <></>
+              )}
+              <label htmlFor="edit__title" className="edit__type--label margin">
                 Description
               </label>
               <input
                 type="text"
-                className="edit__type--input"
+                className={classesDescr}
                 id="edit__descr"
-                onChange={formik.handleChange}
+                onChange={changeHandler}
                 onBlur={formik.handleBlur}
                 value={formik.values.description}
                 name="description"
               />
+              {formik.values.description.length === 0 ? (
+                <div className="error-msg">This is required field</div>
+              ) : (
+                <></>
+              )}
               <div className="edit__btn--section">
                 <CloseModalMainBtn setModalOpen={setModalEditOpen}>
                   Close
