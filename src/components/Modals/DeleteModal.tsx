@@ -59,7 +59,6 @@ const DeleteModal: FC<any> = ({
                 <CloseModalMainBtn setModalOpen={setModalDeleteOpen}>
                   Close
                 </CloseModalMainBtn>
-
                 <CreateModalBtn>Delete</CreateModalBtn>
               </div>
             </form>
