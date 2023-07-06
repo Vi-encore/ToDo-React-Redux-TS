@@ -2,6 +2,7 @@ import { FC, PropsWithChildren, useEffect, useCallback } from "react"; //find co
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { object, string } from "yup";
+import { toast } from "react-toastify";
 import classNames from "classnames";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
@@ -14,7 +15,8 @@ const CreateModal: FC<any> = ({
   modalOpen, //???
   setModalOpen, //???
 }) => {
-  const [addToDo] = useAddTodoMutation();
+  const [addToDo, { isError, isSuccess }] = useAddTodoMutation();
+
   const email = useSelector((state: RootState) => state.email.value);
 
   const validationSchema = object({
@@ -77,6 +79,14 @@ const CreateModal: FC<any> = ({
       document.body.style.overflow = "unset";
     }
   }, [modalOpen]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Card has been created");
+    } else if (isError) {
+      toast.error("Something went wrong");
+    }
+  }, [isSuccess, isError]);
 
   const closeModal = () => {
     setModalOpen(false);

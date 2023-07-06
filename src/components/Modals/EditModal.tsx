@@ -2,6 +2,7 @@ import { FC, PropsWithChildren, useEffect, useCallback } from "react"; //TYPE!!
 import { useFormik } from "formik";
 import classNames from "classnames";
 import { string, object } from "yup";
+import { toast } from "react-toastify";
 import { useUpdateTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
@@ -15,7 +16,7 @@ const EditModal: FC<any> = ({
   description,
   id,
 }) => {
-  const [updateTodo] = useUpdateTodoMutation();
+  const [updateTodo, { isError, isSuccess }] = useUpdateTodoMutation();
   const validationSchema = object({
     title: string().required(),
     description: string().required(),
@@ -57,6 +58,14 @@ const EditModal: FC<any> = ({
       document.body.style.overflow = "unset";
     }
   }, [modalEditOpen]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Card has been edited");
+    } else if (isError) {
+      toast.error("Something went wrong");
+    }
+  }, [isSuccess, isError]);
 
   const changeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
