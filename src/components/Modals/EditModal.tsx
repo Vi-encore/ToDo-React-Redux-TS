@@ -37,7 +37,7 @@ const EditModal: FC<any> = ({
         description: formik.values.description,
       });
       formik.setStatus(false);
-      setModalEditOpen(false);
+      // setModalEditOpen(false);
     },
   });
 
@@ -61,11 +61,13 @@ const EditModal: FC<any> = ({
 
   useEffect(() => {
     if (isSuccess) {
+      setModalEditOpen(false);
       toast.success("Card has been edited");
     } else if (isError) {
+      setModalEditOpen(false);
       toast.error("Something went wrong");
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, setModalEditOpen]);
 
   const changeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {

@@ -42,10 +42,10 @@ const CreateModal: FC<any> = ({
           description: formik.values.description,
           author: email,
         });
-        formik.setStatus(false);
-        setModalOpen(false);
-        formik.values.title = "";
-        formik.values.description = "";
+        // formik.setStatus(false);
+        // setModalOpen(false);
+        // formik.values.title = "";
+        // formik.values.description = "";
       }
     },
   });
@@ -79,15 +79,17 @@ const CreateModal: FC<any> = ({
     } else {
       document.body.style.overflow = "unset";
     }
-  }, [modalOpen]);
+  }, [modalOpen, formik]);
 
   useEffect(() => {
     if (isSuccess) {
       toast.success("Card has been created");
+      setModalOpen(false);
     } else if (isError) {
       toast.error("Something went wrong");
+      setModalOpen(false);
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, setModalOpen]);
 
   const closeModal = () => {
     setModalOpen(false);

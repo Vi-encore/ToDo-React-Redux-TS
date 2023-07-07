@@ -20,7 +20,7 @@ const DeleteModal: FC<any> = ({
     validateOnChange: false,
     onSubmit: () => {
       deleteTodo({ id });
-      setModalDeleteOpen(false);
+      // setModalDeleteOpen(false);
     },
   });
 
@@ -34,11 +34,13 @@ const DeleteModal: FC<any> = ({
 
   useEffect(() => {
     if (isSuccess) {
+      setModalDeleteOpen(false);
       toast.success("Card has been deleted");
     } else if (isError) {
+      setModalDeleteOpen(false);
       toast.error("Something went wrong");
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, setModalDeleteOpen]);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
