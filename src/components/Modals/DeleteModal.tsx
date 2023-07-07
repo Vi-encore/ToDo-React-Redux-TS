@@ -40,6 +40,12 @@ const DeleteModal: FC<any> = ({
     }
   }, [isSuccess, isError]);
 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setModalDeleteOpen(false);
+    }
+  });
+
   return (
     modalDeleteOpen && (
       <div className="delete" onClick={() => setModalDeleteOpen(false)}>

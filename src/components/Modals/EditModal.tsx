@@ -80,6 +80,12 @@ const EditModal: FC<any> = ({
     formik.values.description = `${description}`;
   };
 
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setModalEditOpen(false);
+    }
+  });
+
   return (
     modalEditOpen && (
       <div className="edit" onClick={closeModal}>

@@ -101,8 +101,20 @@
         background-color: $card-btn-section-color;
         border-radius: 0 0 $r-sm $r-sm;
 
+        &--delete {
+          &:focus-visible {
+            border: none;
+            outline: none;
+          }
+        }
+
         &--edit {
           margin-right: 15px;
+
+          &:focus-visible {
+            border: none;
+            outline: none;
+          }
         }
       }
     }

@@ -9,6 +9,7 @@ import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import { useAddTodoMutation } from "app/features/api/apiSlice";
 import { RootState } from "app/store";
 import "components/Modals/_createModal.scss";
+import { log } from "console";
 
 const CreateModal: FC<any> = ({
   children,
@@ -94,6 +95,18 @@ const CreateModal: FC<any> = ({
     formik.values.description = "";
   };
 
+  // const closeOnEsc = (e) => {
+  //   console.log(e.key);
+
+  //   // if (e.key === "Escape") {
+  //   //   setModalOpen(false);
+  //   // }
+  // };
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setModalOpen(false);
+    }
+  });
   //clean fields?
 
   return (
