@@ -19,4 +19,9 @@
     background-color: $disabled-btn-bg-color;
     color: $disabled-btn-text-color;
   }
+
+  &:focus-visible {
+    border: none;
+    outline: none;
+  }
 }
