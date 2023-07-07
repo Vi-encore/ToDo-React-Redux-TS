@@ -1,5 +1,6 @@
 import { FC, PropsWithChildren, useEffect } from "react"; //type!!!
 import { useFormik } from "formik";
+import { toast } from "react-toastify";
 import { useDeleteTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
@@ -12,7 +13,7 @@ const DeleteModal: FC<any> = ({
   id,
   title,
 }) => {
-  const [deleteTodo] = useDeleteTodoMutation();
+  const [deleteTodo, { isSuccess, isError }] = useDeleteTodoMutation();
   const formik = useFormik({
     initialValues: {},
     validateOnBlur: false,
@@ -30,6 +31,20 @@ const DeleteModal: FC<any> = ({
       document.body.style.overflow = "unset";
     }
   }, [modalDeleteOpen]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      toast.success("Card has been deleted");
+    } else if (isError) {
+      toast.error("Something went wrong");
+    }
+  }, [isSuccess, isError]);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      setModalDeleteOpen(false);
+    }
+  });
 
   return (
     modalDeleteOpen && (
@@ -50,7 +65,6 @@ const DeleteModal: FC<any> = ({
                 <CloseModalMainBtn setModalOpen={setModalDeleteOpen}>
                   Close
                 </CloseModalMainBtn>
-
                 <CreateModalBtn>Delete</CreateModalBtn>
               </div>
             </form>
