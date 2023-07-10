@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useGetTodosQuery } from "app/features/api/apiSlice";
+import { toast } from "react-toastify";
 import { RootState } from "app/store";
 import { cardType } from "types/types";
 import Card from "components/Card/Card";
@@ -23,6 +24,7 @@ const ToDoList: FC = () => {
       content = data.map((item: cardType) => Card(item));
     }
   } else if (isError) {
+    toast.error("Something went wrong");
     content = `ERROR ${error}`;
   }
 
