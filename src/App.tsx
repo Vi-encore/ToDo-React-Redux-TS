@@ -1,6 +1,7 @@
+import { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { Provider } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import LoginPage from "components/LoginPage/LoginPage";
 import Dashboard from "components/Dashboard/Dashboard";
 import CheckLogin from "components/CheckLogin/CheckLogin";
@@ -8,7 +9,7 @@ import appRoutes from "components/utils/routes";
 import store from "app/store";
 import "react-toastify/dist/ReactToastify.css";
 
-const App = () => {
+const App: FC = () => {
   return (
     <div className="App">
       <Provider store={store}>
