@@ -16,7 +16,8 @@ const EditModal: FC<any> = ({
   description,
   id,
 }) => {
-  const [updateTodo, { isError, isSuccess }] = useUpdateTodoMutation();
+  const [updateTodo, { isError, isSuccess, isLoading }] =
+    useUpdateTodoMutation();
   const validationSchema = object({
     title: string().required(),
     description: string().required(),
@@ -77,9 +78,11 @@ const EditModal: FC<any> = ({
   );
 
   const closeModal = () => {
-    setModalEditOpen(false);
-    formik.values.title = `${title}`;
-    formik.values.description = `${description}`;
+    if (!isLoading) {
+      setModalEditOpen(false);
+      formik.values.title = `${title}`;
+      formik.values.description = `${description}`;
+    }
   };
 
   document.addEventListener("keydown", (e) => {
@@ -92,10 +95,11 @@ const EditModal: FC<any> = ({
     modalEditOpen && (
       <div className="edit" onClick={closeModal}>
         <div className="edit__container" onClick={(e) => e.stopPropagation()}>
-          <div
+          <button
             className="edit__exit--fixed"
             onClick={() => setModalEditOpen(false)}
-            role="button"
+            // role="button"
+            disabled={isLoading}
           />
           <h2 className="edit__header">{children} card</h2>
           <div className="edit__type--section">
@@ -135,11 +139,14 @@ const EditModal: FC<any> = ({
                 <></>
               )}
               <div className="edit__btn--section">
-                <CloseModalMainBtn setModalOpen={setModalEditOpen}>
+                <CloseModalMainBtn
+                  setModalOpen={setModalEditOpen}
+                  isLoading={isLoading}
+                >
                   Close
                 </CloseModalMainBtn>
 
-                <CreateModalBtn>Save</CreateModalBtn>
+                <CreateModalBtn isLoading={isLoading}>Save</CreateModalBtn>
               </div>
             </form>
           </div>

@@ -9,14 +9,13 @@ import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import { useAddTodoMutation } from "app/features/api/apiSlice";
 import { RootState } from "app/store";
 import "components/Modals/_createModal.scss";
-import { log } from "console";
 
 const CreateModal: FC<any> = ({
   children,
   modalOpen, //???
   setModalOpen, //???
 }) => {
-  const [addToDo, { isError, isSuccess }] = useAddTodoMutation();
+  const [addToDo, { isError, isSuccess, isLoading }] = useAddTodoMutation();
 
   const email = useSelector((state: RootState) => state.email.value);
 
@@ -34,19 +33,22 @@ const CreateModal: FC<any> = ({
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: () => {
-      if (formik.errors.title || formik.errors.description) {
-        formik.setStatus(false);
-      } else {
-        addToDo({
-          title: formik.values.title,
-          description: formik.values.description,
-          author: email,
-        });
-        // formik.setStatus(false);
-        // setModalOpen(false);
-        // formik.values.title = "";
-        // formik.values.description = "";
-      }
+      // if (
+      //   formik.values.title.length === 0 ||
+      //   formik.values.description.length === 0
+      // ) {
+      //   formik.setStatus(false);
+      // } else {
+      addToDo({
+        title: formik.values.title,
+        description: formik.values.description,
+        author: email,
+      });
+      formik.setStatus(false);
+      // setModalOpen(false);
+      formik.values.title = "";
+      formik.values.description = "";
+      // }
     },
   });
 
@@ -92,18 +94,13 @@ const CreateModal: FC<any> = ({
   }, [isSuccess, isError, setModalOpen]);
 
   const closeModal = () => {
-    setModalOpen(false);
-    formik.values.title = "";
-    formik.values.description = "";
+    if (!isLoading) {
+      setModalOpen(false);
+      formik.values.title = "";
+      formik.values.description = "";
+    }
   };
 
-  // const closeOnEsc = (e) => {
-  //   console.log(e.key);
-
-  //   // if (e.key === "Escape") {
-  //   //   setModalOpen(false);
-  //   // }
-  // };
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
       setModalOpen(false);
@@ -115,10 +112,11 @@ const CreateModal: FC<any> = ({
     modalOpen && (
       <div className="create" onClick={closeModal}>
         <div className="create__container" onClick={(e) => e.stopPropagation()}>
-          <div
+          <button
             className="create__exit--fixed"
             onClick={() => setModalOpen(false)}
-            role="button"
+            // role="button"
+            disabled={isLoading}
           />
           <h2 className="create__header">{children} card</h2>
           <div className="create__type--section">
@@ -135,7 +133,7 @@ const CreateModal: FC<any> = ({
                 value={formik.values.title}
                 name="title"
               />
-              {formik.status === false && formik.values.title.length === 0 ? (
+              {formik.values.title.length === 0 && formik.status === false ? (
                 <div className="error-msg">This is required field</div>
               ) : (
                 <></>
@@ -155,17 +153,20 @@ const CreateModal: FC<any> = ({
                 value={formik.values.description}
                 name="description"
               />
-              {formik.status === false &&
-              formik.values.description.length === 0 ? (
+              {formik.values.description.length === 0 &&
+              formik.status === false ? (
                 <div className="error-msg">This is required field</div>
               ) : (
                 <></>
               )}
               <div className="create__btn--section">
-                <CloseModalMainBtn setModalOpen={setModalOpen}>
+                <CloseModalMainBtn
+                  setModalOpen={setModalOpen}
+                  isLoading={isLoading}
+                >
                   Close
                 </CloseModalMainBtn>
-                <CreateModalBtn>Create</CreateModalBtn>
+                <CreateModalBtn isLoading={isLoading}>Create</CreateModalBtn>
               </div>
             </form>
           </div>

@@ -13,7 +13,8 @@ const DeleteModal: FC<any> = ({
   id,
   title,
 }) => {
-  const [deleteTodo, { isSuccess, isError }] = useDeleteTodoMutation();
+  const [deleteTodo, { isSuccess, isError, isLoading }] =
+    useDeleteTodoMutation();
   const formik = useFormik({
     initialValues: {},
     validateOnBlur: false,
@@ -48,14 +49,21 @@ const DeleteModal: FC<any> = ({
     }
   });
 
+  const closeModal = () => {
+    if (!isLoading) {
+      setModalDeleteOpen(false);
+    }
+  };
+
   return (
     modalDeleteOpen && (
-      <div className="delete" onClick={() => setModalDeleteOpen(false)}>
+      <div className="delete" onClick={closeModal}>
         <div className="delete__container" onClick={(e) => e.stopPropagation()}>
-          <div
+          <button
             className="delete__exit--fixed"
             onClick={() => setModalDeleteOpen(false)}
-            role="button"
+            // role="button"
+            disabled={isLoading}
           />
           <h2 className="delete__header">{children} card</h2>
           <div className="delete__type--section">
@@ -64,10 +72,13 @@ const DeleteModal: FC<any> = ({
                 Are you sure you want to delete "{title}" card ?
               </p>
               <div className="delete__btn--section">
-                <CloseModalMainBtn setModalOpen={setModalDeleteOpen}>
+                <CloseModalMainBtn
+                  setModalOpen={setModalDeleteOpen}
+                  isLoading={isLoading}
+                >
                   Close
                 </CloseModalMainBtn>
-                <CreateModalBtn>Delete</CreateModalBtn>
+                <CreateModalBtn isLoading={isLoading}>Delete</CreateModalBtn>
               </div>
             </form>
           </div>
