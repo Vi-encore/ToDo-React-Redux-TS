@@ -1,8 +1,11 @@
-import { FC, PropsWithChildren, useState } from "react"; //type!!
+import { FC, useState } from "react";
+import { deleteBtnType } from "types/types";
 import DeleteModal from "components/Modals/DeleteModal";
 
-const DeleteBtn: FC<any> = ({ children, title, id }) => {
+const DeleteBtn: FC<deleteBtnType> = ({ children, title, id }) => {
   const [modalDeleteOpen, setModalDeleteOpen] = useState(false);
+
+  console.log(typeof setModalDeleteOpen);
 
   return (
     <>

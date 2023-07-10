@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect, useCallback } from "react"; //TYPE!!
+import { FC, useEffect, useCallback } from "react"; //TYPE!!
 import { useFormik } from "formik";
 import classNames from "classnames";
 import { string, object } from "yup";
@@ -6,17 +6,19 @@ import { toast } from "react-toastify";
 import { useUpdateTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
+import { editModalType } from "types/types";
 import "components/Modals/_editModal.scss";
 
-const EditModal: FC<any> = ({
+const EditModal: FC<editModalType> = ({
   children,
-  setModalEditOpen,
   modalEditOpen,
+  setModalEditOpen,
   title,
   description,
   id,
 }) => {
-  const [updateTodo, { isError, isSuccess }] = useUpdateTodoMutation();
+  const [updateTodo, { isError, isSuccess, isLoading }] =
+    useUpdateTodoMutation();
   const validationSchema = object({
     title: string().required(),
     description: string().required(),
@@ -37,7 +39,6 @@ const EditModal: FC<any> = ({
         description: formik.values.description,
       });
       formik.setStatus(false);
-      setModalEditOpen(false);
     },
   });
 
@@ -61,11 +62,13 @@ const EditModal: FC<any> = ({
 
   useEffect(() => {
     if (isSuccess) {
+      setModalEditOpen(false);
       toast.success("Card has been edited");
     } else if (isError) {
+      setModalEditOpen(false);
       toast.error("Something went wrong");
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, setModalEditOpen]);
 
   const changeHandler = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -75,9 +78,11 @@ const EditModal: FC<any> = ({
   );
 
   const closeModal = () => {
-    setModalEditOpen(false);
-    formik.values.title = `${title}`;
-    formik.values.description = `${description}`;
+    if (!isLoading) {
+      setModalEditOpen(false);
+      formik.values.title = `${title}`;
+      formik.values.description = `${description}`;
+    }
   };
 
   document.addEventListener("keydown", (e) => {
@@ -90,10 +95,10 @@ const EditModal: FC<any> = ({
     modalEditOpen && (
       <div className="edit" onClick={closeModal}>
         <div className="edit__container" onClick={(e) => e.stopPropagation()}>
-          <div
+          <button
             className="edit__exit--fixed"
             onClick={() => setModalEditOpen(false)}
-            role="button"
+            disabled={isLoading}
           />
           <h2 className="edit__header">{children} card</h2>
           <div className="edit__type--section">
@@ -109,6 +114,7 @@ const EditModal: FC<any> = ({
                 onBlur={formik.handleBlur}
                 value={formik.values.title}
                 name="title"
+                disabled={isLoading}
               />
               {formik.values.title.length === 0 ? (
                 <div className="error-msg">This is required field</div>
@@ -126,6 +132,7 @@ const EditModal: FC<any> = ({
                 onBlur={formik.handleBlur}
                 value={formik.values.description}
                 name="description"
+                disabled={isLoading}
               />
               {formik.values.description.length === 0 ? (
                 <div className="error-msg">This is required field</div>
@@ -133,11 +140,14 @@ const EditModal: FC<any> = ({
                 <></>
               )}
               <div className="edit__btn--section">
-                <CloseModalMainBtn setModalOpen={setModalEditOpen}>
+                <CloseModalMainBtn
+                  setModalOpen={setModalEditOpen}
+                  isLoading={isLoading}
+                >
                   Close
                 </CloseModalMainBtn>
 
-                <CreateModalBtn>Save</CreateModalBtn>
+                <CreateModalBtn isLoading={isLoading}>Save</CreateModalBtn>
               </div>
             </form>
           </div>

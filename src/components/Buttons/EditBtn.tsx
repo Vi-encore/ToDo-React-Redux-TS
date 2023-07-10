@@ -1,7 +1,8 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC, useState } from "react";
+import { editBtnType } from "types/types";
 import EditModal from "components/Modals/EditModal";
 
-const EditBtn: FC<any> = ({ children, title, description, id }) => {
+const EditBtn: FC<editBtnType> = ({ children, title, description, id }) => {
   const [modalEditOpen, setModalEditOpen] = useState(false);
 
   return (

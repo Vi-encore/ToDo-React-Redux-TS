@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { cardInfoType } from "types/types";
 
 export const apiSlice = createApi({
   reducerPath: "api",
@@ -9,7 +10,8 @@ export const apiSlice = createApi({
   endpoints: (builder) => ({
     getTodos: builder.query({
       query: (email) => `/cards/${email}`,
-      transformResponse: (res) => res.sort((a, b) => b.id - a.id), //to display newer cards first //what type?
+      transformResponse: (res: []) =>
+        res.sort((a: cardInfoType, b: cardInfoType) => b.id - a.id), //to display newer cards first //what type?
       providesTags: ["Todos"],
     }),
     addTodo: builder.mutation({
@@ -30,7 +32,6 @@ export const apiSlice = createApi({
     }),
     deleteTodo: builder.mutation({
       query: ({ id }) => ({
-        //todo.id
         url: `/cards/${id}`,
         method: "DELETE",
         body: id,

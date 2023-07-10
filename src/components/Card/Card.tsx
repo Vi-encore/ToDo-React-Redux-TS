@@ -1,15 +1,10 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC } from "react";
+import { cardInfoType } from "types/types";
 import EditBtn from "components/Buttons/EditBtn";
 import DeleteBtn from "components/Buttons/DeleteBtn";
 
-const Card: FC = (children: any) => {
+const Card: FC<cardInfoType> = (children) => {
   const { title, description, id } = children;
-
-  // console.log();
-
-  // const { title, body, id } = children;
-
-  // in p => {description}; in h2 => {title}
 
   return (
     <div className="dashboard__cards-card" key={id}>

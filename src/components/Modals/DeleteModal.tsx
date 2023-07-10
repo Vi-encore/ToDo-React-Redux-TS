@@ -1,26 +1,27 @@
-import { FC, PropsWithChildren, useEffect } from "react"; //type!!!
+import { FC, useEffect } from "react"; //type!!!
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useDeleteTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
+import { deleteModalType } from "types/types";
 import "components/Modals/_deleteModal.scss";
 
-const DeleteModal: FC<any> = ({
+const DeleteModal: FC<deleteModalType> = ({
   children,
   setModalDeleteOpen,
   modalDeleteOpen,
   id,
   title,
 }) => {
-  const [deleteTodo, { isSuccess, isError }] = useDeleteTodoMutation();
+  const [deleteTodo, { isSuccess, isError, isLoading }] =
+    useDeleteTodoMutation();
   const formik = useFormik({
     initialValues: {},
     validateOnBlur: false,
     validateOnChange: false,
     onSubmit: () => {
       deleteTodo({ id });
-      setModalDeleteOpen(false);
     },
   });
 
@@ -34,11 +35,13 @@ const DeleteModal: FC<any> = ({
 
   useEffect(() => {
     if (isSuccess) {
+      setModalDeleteOpen(false);
       toast.success("Card has been deleted");
     } else if (isError) {
+      setModalDeleteOpen(false);
       toast.error("Something went wrong");
     }
-  }, [isSuccess, isError]);
+  }, [isSuccess, isError, setModalDeleteOpen]);
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
@@ -46,14 +49,20 @@ const DeleteModal: FC<any> = ({
     }
   });
 
+  const closeModal = () => {
+    if (!isLoading) {
+      setModalDeleteOpen(false);
+    }
+  };
+
   return (
     modalDeleteOpen && (
-      <div className="delete" onClick={() => setModalDeleteOpen(false)}>
+      <div className="delete" onClick={closeModal}>
         <div className="delete__container" onClick={(e) => e.stopPropagation()}>
-          <div
+          <button
             className="delete__exit--fixed"
             onClick={() => setModalDeleteOpen(false)}
-            role="button"
+            disabled={isLoading}
           />
           <h2 className="delete__header">{children} card</h2>
           <div className="delete__type--section">
@@ -62,10 +71,13 @@ const DeleteModal: FC<any> = ({
                 Are you sure you want to delete "{title}" card ?
               </p>
               <div className="delete__btn--section">
-                <CloseModalMainBtn setModalOpen={setModalDeleteOpen}>
+                <CloseModalMainBtn
+                  setModalOpen={setModalDeleteOpen}
+                  isLoading={isLoading}
+                >
                   Close
                 </CloseModalMainBtn>
-                <CreateModalBtn>Delete</CreateModalBtn>
+                <CreateModalBtn isLoading={isLoading}>Delete</CreateModalBtn>
               </div>
             </form>
           </div>
