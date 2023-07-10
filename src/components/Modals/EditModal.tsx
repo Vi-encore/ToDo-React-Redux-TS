@@ -100,7 +100,7 @@ const EditModal: FC<editModalType> = ({
             onClick={() => setModalEditOpen(false)}
             disabled={isLoading}
           />
-          <h2 className="edit__header">{children} card</h2> //type??
+          <h2 className="edit__header">{children} card</h2>
           <div className="edit__type--section">
             <form className="edit__type--form" onSubmit={formik.handleSubmit}>
               <label htmlFor="edit__title" className="edit__type--label">
