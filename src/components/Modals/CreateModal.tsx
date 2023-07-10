@@ -33,12 +33,6 @@ const CreateModal: FC<any> = ({
     validateOnChange: false,
     validateOnBlur: false,
     onSubmit: () => {
-      // if (
-      //   formik.values.title.length === 0 ||
-      //   formik.values.description.length === 0
-      // ) {
-      //   formik.setStatus(false);
-      // } else {
       addToDo({
         title: formik.values.title,
         description: formik.values.description,
@@ -46,9 +40,8 @@ const CreateModal: FC<any> = ({
       });
       formik.setStatus(false);
       // setModalOpen(false);
-      formik.values.title = "";
-      formik.values.description = "";
-      // }
+      //   formik.values.title = "";
+      //   formik.values.description = "";
     },
   });
 
@@ -130,7 +123,7 @@ const CreateModal: FC<any> = ({
                 id="create__title"
                 onChange={changeHandler}
                 onBlur={formik.handleBlur}
-                value={formik.values.title}
+                // value={formik.values.title}
                 name="title"
                 disabled={isLoading}
               />
@@ -151,7 +144,7 @@ const CreateModal: FC<any> = ({
                 id="create__descr"
                 onChange={changeHandler}
                 onBlur={formik.handleBlur}
-                value={formik.values.description}
+                // value={formik.values.description}
                 name="description"
                 disabled={isLoading}
               />
