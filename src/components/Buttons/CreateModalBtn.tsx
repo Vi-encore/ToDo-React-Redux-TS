@@ -1,7 +1,8 @@
-import { FC, PropsWithChildren } from "react";
+import { FC } from "react";
+import { createModalBtnType } from "types/types";
 import "src/styles/components/_CreateModalBtn.scss";
 
-const CreateModalBtn: FC<PropsWithChildren> = ({ children, isLoading }) => {
+const CreateModalBtn: FC<createModalBtnType> = ({ children, isLoading }) => {
   return (
     <button className="modal__create-btn" type="submit" disabled={isLoading}>
       {children}

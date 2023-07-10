@@ -1,20 +1,18 @@
-import { FC, PropsWithChildren, useState } from "react";
+import { FC } from "react";
+import { closeBtnType } from "types/types";
 import "src/styles/components/_CloseBtn.scss";
 
-const CloseModalMainBtn: FC<PropsWithChildren> = ({
+const CloseModalMainBtn: FC<closeBtnType> = ({
   children,
-  setModalOpen,
   isLoading,
+  setModalOpen,
 }) => {
-  // const [modalOpen, setModalOpen] = useState(true);
   return (
     <button
       type="button"
       className="modal__close-btn"
       onClick={() => setModalOpen(false)}
       disabled={isLoading}
-
-      // onKeyDown={() => setModalOpen(false)}
     >
       {children}
     </button>

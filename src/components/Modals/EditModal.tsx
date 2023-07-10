@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect, useCallback } from "react"; //TYPE!!
+import { FC, useEffect, useCallback } from "react"; //TYPE!!
 import { useFormik } from "formik";
 import classNames from "classnames";
 import { string, object } from "yup";
@@ -6,12 +6,13 @@ import { toast } from "react-toastify";
 import { useUpdateTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
+import { editModalType } from "types/types";
 import "components/Modals/_editModal.scss";
 
-const EditModal: FC<any> = ({
+const EditModal: FC<editModalType> = ({
   children,
-  setModalEditOpen,
   modalEditOpen,
+  setModalEditOpen,
   title,
   description,
   id,
@@ -38,7 +39,6 @@ const EditModal: FC<any> = ({
         description: formik.values.description,
       });
       formik.setStatus(false);
-      // setModalEditOpen(false);
     },
   });
 
@@ -98,10 +98,9 @@ const EditModal: FC<any> = ({
           <button
             className="edit__exit--fixed"
             onClick={() => setModalEditOpen(false)}
-            // role="button"
             disabled={isLoading}
           />
-          <h2 className="edit__header">{children} card</h2>
+          <h2 className="edit__header">{children} card</h2> //type??
           <div className="edit__type--section">
             <form className="edit__type--form" onSubmit={formik.handleSubmit}>
               <label htmlFor="edit__title" className="edit__type--label">

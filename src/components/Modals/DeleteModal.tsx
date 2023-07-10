@@ -1,12 +1,13 @@
-import { FC, PropsWithChildren, useEffect } from "react"; //type!!!
+import { FC, useEffect } from "react"; //type!!!
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
 import { useDeleteTodoMutation } from "app/features/api/apiSlice";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
+import { deleteModalType } from "types/types";
 import "components/Modals/_deleteModal.scss";
 
-const DeleteModal: FC<any> = ({
+const DeleteModal: FC<deleteModalType> = ({
   children,
   setModalDeleteOpen,
   modalDeleteOpen,
@@ -21,7 +22,6 @@ const DeleteModal: FC<any> = ({
     validateOnChange: false,
     onSubmit: () => {
       deleteTodo({ id });
-      // setModalDeleteOpen(false);
     },
   });
 
@@ -62,7 +62,6 @@ const DeleteModal: FC<any> = ({
           <button
             className="delete__exit--fixed"
             onClick={() => setModalDeleteOpen(false)}
-            // role="button"
             disabled={isLoading}
           />
           <h2 className="delete__header">{children} card</h2>

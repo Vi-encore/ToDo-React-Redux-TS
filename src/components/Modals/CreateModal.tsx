@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, useEffect, useCallback } from "react"; //find corresponding type
+import { FC, useEffect, useCallback } from "react"; //find corresponding type
 import { useSelector } from "react-redux";
 import { useFormik } from "formik";
 import { object, string } from "yup";
@@ -7,13 +7,14 @@ import classNames from "classnames";
 import CreateModalBtn from "components/Buttons/CreateModalBtn";
 import CloseModalMainBtn from "components/Buttons/CloseModalMainBtn";
 import { useAddTodoMutation } from "app/features/api/apiSlice";
+import { createModalType } from "types/types";
 import { RootState } from "app/store";
 import "components/Modals/_createModal.scss";
 
-const CreateModal: FC<any> = ({
+const CreateModal: FC<createModalType> = ({
   children,
-  modalOpen, //???
-  setModalOpen, //???
+  modalOpen,
+  setModalOpen,
 }) => {
   const [addToDo, { isError, isSuccess, isLoading }] = useAddTodoMutation();
 
@@ -39,9 +40,6 @@ const CreateModal: FC<any> = ({
         author: email,
       });
       formik.setStatus(false);
-      // setModalOpen(false);
-      //   formik.values.title = "";
-      //   formik.values.description = "";
     },
   });
 
@@ -70,7 +68,6 @@ const CreateModal: FC<any> = ({
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflow = "hidden";
-      // formik.setStatus(true);
     } else {
       document.body.style.overflow = "unset";
     }
@@ -101,8 +98,6 @@ const CreateModal: FC<any> = ({
     }
   });
 
-  //clean fields?
-
   return (
     modalOpen && (
       <div className="create" onClick={closeModal}>
@@ -125,7 +120,6 @@ const CreateModal: FC<any> = ({
                 id="create__title"
                 onChange={changeHandler}
                 onBlur={formik.handleBlur}
-                // value={formik.values.title}
                 name="title"
                 disabled={isLoading}
               />
@@ -146,7 +140,6 @@ const CreateModal: FC<any> = ({
                 id="create__descr"
                 onChange={changeHandler}
                 onBlur={formik.handleBlur}
-                // value={formik.values.description}
                 name="description"
                 disabled={isLoading}
               />

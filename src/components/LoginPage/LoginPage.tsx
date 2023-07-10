@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, FC } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
@@ -6,16 +6,11 @@ import { object, string } from "yup";
 import classNames from "classnames";
 import appRoutes from "components/utils/routes";
 import { setLogin } from "app/features/inputReducer";
-
 import "components/LoginPage/_login.scss";
 
-const LoginPage = () => {
+const LoginPage: FC = () => {
   const navigate = useNavigate();
-
-  // const inputValue = useSelector((state: RootState) => state.email.value); //
   const dispatch = useDispatch();
-
-  // getInitToDos(email);
 
   const validationScheme = object({
     email: string()
@@ -44,9 +39,8 @@ const LoginPage = () => {
     navigate(appRoutes.dashboard);
   };
 
-  //secure routes?
   useEffect(() => {
-    localStorage.getItem("login") && navigate(appRoutes.dashboard); //redux-email here ?
+    localStorage.getItem("login") && navigate(appRoutes.dashboard);
   });
 
   const classes = classNames({
@@ -77,11 +71,7 @@ const LoginPage = () => {
       <div className="loginPage__box">
         <h1 className="loginPage__header">Login form</h1>
 
-        <form
-          className="loginPage__form"
-          onSubmit={submitHandler}
-          // onSubmit={formik.handleSubmit}
-        >
+        <form className="loginPage__form" onSubmit={submitHandler}>
           <label htmlFor="email" className="loginPage__label">
             Email
           </label>
@@ -89,7 +79,6 @@ const LoginPage = () => {
             name="email"
             type={"text"}
             onChange={changeHandler}
-            // onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
             className={classes}
