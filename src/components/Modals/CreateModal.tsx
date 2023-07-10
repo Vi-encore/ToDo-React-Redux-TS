@@ -47,7 +47,7 @@ const CreateModal: FC<any> = ({
 
   const classesTitle = classNames({
     "create__type--input":
-      formik.values.title.length > 0 || formik.status === true,
+      formik.values.title.length >= 0 || formik.status === true,
     "create__type--input-error":
       formik.status === false && formik.values.title.length === 0,
   });
@@ -70,7 +70,7 @@ const CreateModal: FC<any> = ({
   useEffect(() => {
     if (modalOpen) {
       document.body.style.overflow = "hidden";
-      formik.setStatus(true);
+      // formik.setStatus(true);
     } else {
       document.body.style.overflow = "unset";
     }
@@ -89,6 +89,7 @@ const CreateModal: FC<any> = ({
   const closeModal = () => {
     if (!isLoading) {
       setModalOpen(false);
+      formik.setStatus(true);
       formik.values.title = "";
       formik.values.description = "";
     }
@@ -99,6 +100,7 @@ const CreateModal: FC<any> = ({
       setModalOpen(false);
     }
   });
+
   //clean fields?
 
   return (
