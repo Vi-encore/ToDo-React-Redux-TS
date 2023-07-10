@@ -132,6 +132,7 @@ const CreateModal: FC<any> = ({
                 onBlur={formik.handleBlur}
                 value={formik.values.title}
                 name="title"
+                disabled={isLoading}
               />
               {formik.values.title.length === 0 && formik.status === false ? (
                 <div className="error-msg">This is required field</div>
@@ -152,6 +153,7 @@ const CreateModal: FC<any> = ({
                 onBlur={formik.handleBlur}
                 value={formik.values.description}
                 name="description"
+                disabled={isLoading}
               />
               {formik.values.description.length === 0 &&
               formik.status === false ? (
